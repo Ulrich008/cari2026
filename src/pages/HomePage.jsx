@@ -27,8 +27,8 @@ const HomePage = () => {
               <Countdown />
             </div>
       </div>
-{/*       
-      <Footer /> */}
+      
+      <Footer />
     </div>
   );
 };

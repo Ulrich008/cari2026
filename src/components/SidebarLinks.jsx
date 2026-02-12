@@ -6,25 +6,23 @@ const SidebarLinks = () => {
 
   const handleSubscribe = (e) => {
     e.preventDefault();
-    // Logique de souscription à la newsletter
     console.log('Subscription:', { name, email });
-    // Réinitialiser les champs
     setName('');
     setEmail('');
   };
 
   const links = [
-    { 
-      title: 'PROGRAM BOOK', 
-      bg: 'bg-green-600', 
+    {
+      title: 'PROGRAM BOOK',
+      bg: 'bg-green-600',
       icon: (
         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
           <path d="M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 2v16h12V4H6zm2 2h8v2H8V6zm0 4h8v2H8v-2zm0 4h5v2H8v-2z"/>
         </svg>
       )
     },
-    { 
-      title: 'PHOTO GALLERY', 
+    {
+      title: 'PHOTO GALLERY',
       bg: 'bg-red-600',
       icon: (
         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -32,8 +30,8 @@ const SidebarLinks = () => {
         </svg>
       )
     },
-    { 
-      title: 'IMPORTANT DATES', 
+    {
+      title: 'IMPORTANT DATES',
       bg: 'bg-red-500',
       icon: (
         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -41,8 +39,8 @@ const SidebarLinks = () => {
         </svg>
       )
     },
-    { 
-      title: 'PROCEEDINGS', 
+    {
+      title: 'PROCEEDINGS',
       bg: 'bg-red-500',
       icon: (
         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -54,12 +52,12 @@ const SidebarLinks = () => {
 
   return (
     <div className="space-y-3">
-      {/* Quick Links Buttons */}
+      {/* Boutons de liens rapides */}
       <div className="space-y-3">
         {links.map((link, index) => (
-          <button 
+          <button
             key={index}
-            className={`${link.bg} text-white w-full p-4 rounded-lg cursor-pointer hover:opacity-90 transition-opacity flex items-center gap-3 shadow-md`}
+            className={`${link.bg} text-white w-5/6 p-4 rounded-lg cursor-pointer hover:opacity-90 transition-opacity flex items-center gap-2 shadow-md`}
           >
             <div className="flex-shrink-0">
               {link.icon}
@@ -69,12 +67,12 @@ const SidebarLinks = () => {
         ))}
       </div>
 
-      {/* Newsletter Subscription */}
-      <div className="bg-green-600 p-6 rounded-lg shadow-md">
+      {/* Abonnement à la newsletter */}
+      <div className="w-5/6 bg-green-600 p-4 rounded-lg shadow-md">
         <h3 className="font-bold text-white text-sm md:text-base mb-4 uppercase">
           NEWSLETTERS SUBSCRIPTION
         </h3>
-        
+
         <form onSubmit={handleSubscribe} className="space-y-3">
           <input
             type="text"
@@ -83,7 +81,6 @@ const SidebarLinks = () => {
             onChange={(e) => setName(e.target.value)}
             className="w-full p-3 rounded-lg border-2 border-white bg-white text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-300"
           />
-          
           <input
             type="email"
             placeholder="name@example.com"
@@ -94,9 +91,7 @@ const SidebarLinks = () => {
           <br />
           <br />
           <br />
-          <br />
-          <br />
-          <button 
+          <button
             type="submit"
             className="w-full bg-white text-green-600 py-3 rounded-lg font-bold hover:bg-gray-100 transition-colors shadow-sm uppercase text-sm"
           >

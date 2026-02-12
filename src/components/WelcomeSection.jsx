@@ -9,8 +9,8 @@ const WelcomeSection = () => {
           WELCOME TO CARI2026
         </h2>
         
-        {/* Contenu du texte */}
-        <div className="space-y-4 text-gray-900 text-base leading-relaxed">
+        {/* Contenu du texte — justifié */}
+        <div className="space-y-4 text-gray-900 text-base leading-relaxed text-justify">
           <p className="font-medium">
             Dear CARI colleagues and friends,
           </p>

@@ -49,58 +49,74 @@ const Countdown = () => {
           backgroundImage: 'url(/assets/sofitel.jpeg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          minHeight: '300px',
-          width: '90%',
+          minHeight: '200px',
+          width: '92%',
         }}
       >
         {/* Overlay sombre pour améliorer la lisibilité */}
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         
         {/* Contenu du compte à rebours */}
-        <div className="relative z-10 flex flex-col items-center justify-center h-full py-8 px-4">
-          {/* Chiffres du compte à rebours */}
-          <div className="flex items-center gap-2 md:gap-4 mb-4">
-            {/* Jours */}
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
-                {formatTime(timeLeft.days)}
+        <div className="relative z-10 flex flex-col items-center justify-center h-full w-full py-8 px-4">
+          {/* Conteneur principal du compteur */}
+          <div className="flex flex-col items-center justify-center w-full max-w-5xl">
+            {/* Ligne avec chiffres et séparateurs alignés */}
+            <div className="flex items-center justify-center gap-2 md:gap-4 lg:gap-6 w-full">
+              {/* Jours */}
+              <div className="flex flex-col items-center">
+                <div className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-none tabular-nums">
+                  {formatTime(timeLeft.days)}
+                </div>
+                <div className="text-yellow-400 font-bold text-sm md:text-base lg:text-lg xl:text-xl text-center mt-2">
+                  Day
+                </div>
+              </div>
+              
+              {/* Séparateur 1 */}
+              <div className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-none self-start pt-0">
+                :
+              </div>
+              
+              {/* Heures */}
+              <div className="flex flex-col items-center">
+                <div className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-none tabular-nums">
+                  {formatTime(timeLeft.hours)}
+                </div>
+                <div className="text-white font-bold text-sm md:text-base lg:text-lg xl:text-xl text-center mt-2">
+                  Heure
+                </div>
+              </div>
+              
+              {/* Séparateur 2 */}
+              <div className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-none self-start pt-0">
+                :
+              </div>
+              
+              {/* Minutes */}
+              <div className="flex flex-col items-center">
+                <div className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-none tabular-nums">
+                  {formatTime(timeLeft.minutes)}
+                </div>
+                <div className="text-yellow-400 font-bold text-sm md:text-base lg:text-lg xl:text-xl text-center mt-2">
+                  Minute
+                </div>
+              </div>
+              
+              {/* Séparateur 3 */}
+              <div className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-none self-start pt-0">
+                :
+              </div>
+              
+              {/* Secondes */}
+              <div className="flex flex-col items-center">
+                <div className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-none tabular-nums">
+                  {formatTime(timeLeft.seconds)}
+                </div>
+                <div className="text-white font-bold text-sm md:text-base lg:text-lg xl:text-xl text-center mt-2">
+                  Seconde
+                </div>
               </div>
             </div>
-            
-            <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">:</span>
-            
-            {/* Heures */}
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
-                {formatTime(timeLeft.hours)}
-              </div>
-            </div>
-            
-            <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">:</span>
-            
-            {/* Minutes */}
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
-                {formatTime(timeLeft.minutes)}
-              </div>
-            </div>
-            
-            <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">:</span>
-            
-            {/* Secondes */}
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
-                {formatTime(timeLeft.seconds)}
-              </div>
-            </div>
-          </div>
-          
-          {/* Labels */}
-          <div className="flex items-center justify-center gap-6 md:gap-12 lg:gap-16">
-            <div className="text-yellow-400 font-semibold text-sm md:text-base">Day</div>
-            <div className="text-yellow-400 font-semibold text-sm md:text-base">Heure</div>
-            <div className="text-yellow-400 font-semibold text-sm md:text-base">Minute</div>
-            <div className="text-yellow-400 font-semibold text-sm md:text-base">Seconde</div>
           </div>
         </div>
       </div>
