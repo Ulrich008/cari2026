@@ -2,8 +2,8 @@ import React from 'react';
 
 const WelcomeSection = () => {
   return (
-    <section className="bg-white py-8 px-6 md:px-12 lg:px-16">
-      <div className="max-w-5xl">
+    <section className="bg-white">
+      <div className="max-w-full">
         {/* Titre principal en rouge */}
         <h2 className="text-3xl md:text-4xl font-bold text-red-600 mb-6">
           WELCOME TO CARI2026
@@ -11,7 +11,7 @@ const WelcomeSection = () => {
         
         {/* Contenu du texte — justifié */}
         <div className="space-y-4 text-gray-900 text-base leading-relaxed text-justify">
-          <p className="font-medium">
+          <p className="font-bold">
             Dear CARI colleagues and friends,
           </p>
           

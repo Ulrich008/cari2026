@@ -31,7 +31,7 @@ const Header = () => {
   return (
     <div className="relative w-full">
       {/* Carrousel d'images - en arrière-plan plein écran */}
-      <div className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden bg-gray-900">
+      <div className="relative w-full h-[350px] sm:h-[450px] md:h-[550px] lg:h-[600px] xl:h-[600px] overflow-hidden bg-gray-900">
         <div className="relative w-full h-full">
           {slides.map((slide, index) => (
             <div
@@ -54,16 +54,15 @@ const Header = () => {
           ))}
         </div>
 
-        {/* Bouton précédent */}
+        {/* Bouton précédent - position ajustée selon la hauteur du header */}
         <button
           onClick={prevSlide}
-          className="absolute left-6 top-1/2 -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 p-2.5 rounded-full shadow-xl transition-all duration-200 z-10 hover:scale-110"
+          className="absolute left-4 sm:left-6 top-[calc(50%+40px)] sm:top-[calc(50%+45px)] md:top-[calc(50%+50px)] lg:top-[calc(50%+60px)] -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 p-2 sm:p-2.5 rounded-full shadow-xl transition-all duration-200 z-10 hover:scale-110"
           aria-label="Image précédente"
-          style={{ marginTop: '60px' }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-7 w-7"
+            className="h-5 w-5 sm:h-7 sm:w-7"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -80,13 +79,12 @@ const Header = () => {
         {/* Bouton suivant */}
         <button
           onClick={nextSlide}
-          className="absolute right-6 top-1/2 -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 p-2.5 rounded-full shadow-xl transition-all duration-200 z-10 hover:scale-110"
+          className="absolute right-4 sm:right-6 top-[calc(50%+40px)] sm:top-[calc(50%+45px)] md:top-[calc(50%+50px)] lg:top-[calc(50%+60px)] -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 p-2 sm:p-2.5 rounded-full shadow-xl transition-all duration-200 z-10 hover:scale-110"
           aria-label="Image suivante"
-          style={{ marginTop: '60px' }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-7 w-7"
+            className="h-5 w-5 sm:h-7 sm:w-7"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -101,15 +99,15 @@ const Header = () => {
         </button>
 
         {/* Indicateurs de slides */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2.5 z-10">
+        <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5 sm:gap-2.5 z-10">
           {slides.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`h-2.5 rounded-full transition-all duration-300 ${
+              className={`h-2 sm:h-2.5 rounded-full transition-all duration-300 ${
                 index === currentSlide
-                  ? 'bg-yellow-400 w-10'
-                  : 'bg-white bg-opacity-60 hover:bg-opacity-90 w-2.5'
+                  ? 'bg-yellow-400 w-6 sm:w-10'
+                  : 'bg-white bg-opacity-60 hover:bg-opacity-90 w-2 sm:w-2.5'
               }`}
               aria-label={`Aller à l'image ${index + 1}`}
             />
@@ -119,11 +117,11 @@ const Header = () => {
 
       {/* En-tête avec logos et titre - superposé */}
       <header className="absolute top-0 left-0 right-0 bg-white bg-opacity-70 shadow-md z-20">
-        <div className="container mx-auto px-4 py-3">
-          <div className="flex items-center justify-between gap-4">
+        <div className="container mx-auto px-2 sm:px-4 py-2 sm:py-3">
+          <div className="flex items-center justify-between gap-2 sm:gap-4">
             
             {/* Logo gauche - CARI 2026 */}
-            <div className="flex-shrink-0 w-24 md:w-28">
+            <div className="flex-shrink-0 w-16 max-[400px]:w-12 sm:w-20 md:w-24 lg:w-28">
               <img
                 src="/assets/logo1.png"
                 alt="Logo CARI 2026"
@@ -131,10 +129,10 @@ const Header = () => {
                 onError={(e) => {
                   console.error('Logo CARI non trouvé');
                   e.target.parentElement.innerHTML = `
-                    <div class="w-20 h-20 md:w-24 md:h-24 rounded-full border-4 border-green-600 bg-white flex items-center justify-center shadow-lg mx-auto">
+                    <div class="w-16 h-16 max-[400px]:w-12 max-[400px]:h-12 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full border-4 border-green-600 bg-white flex items-center justify-center shadow-lg mx-auto">
                       <div class="text-center">
-                        <div class="text-sm md:text-base font-bold text-gray-700">CARI</div>
-                        <div class="text-xs bg-green-600 text-white px-2 py-0.5 rounded mt-1">2026</div>
+                        <div class="text-xs sm:text-sm md:text-base font-bold text-gray-700">CARI</div>
+                        <div class="text-[10px] sm:text-xs bg-green-600 text-white px-1 sm:px-2 py-0.5 rounded mt-0.5 sm:mt-1">2026</div>
                       </div>
                     </div>
                   `;
@@ -143,27 +141,27 @@ const Header = () => {
             </div>
 
             {/* Section centrale - Titre et détails */}
-            <div className="flex-grow text-center px-4 md:px-6">
-              <h1 className="text-lg md:text-2xl lg:text-3xl font-bold leading-tight mb-1.5">
-                <span className="text-red-600 text-xl md:text-3xl lg:text-4xl font-extrabold">
-                  18<sup className="text-xs md:text-base align-super">th</sup>
+            <div className="flex-grow text-center px-1 sm:px-4 md:px-6">
+              <h1 className="text-xs sm:text-sm md:text-lg lg:text-2xl xl:text-3xl font-bold leading-tight mb-0.5 sm:mb-1.5">
+                <span className="text-red-600 text-sm sm:text-base md:text-xl lg:text-2xl xl:text-4xl font-extrabold">
+                  18<sup className="text-[8px] sm:text-xs md:text-sm lg:text-base align-super">th</sup>
                 </span>
                 <span className="text-gray-900"> African conference on Research in Computer Science</span>
-                <br />
-                <span className="text-gray-900">and Applied Mathematics - Digital Science in Africa</span>
+                <br className="hidden sm:block" />
+                <span className="text-gray-900 text-[10px] sm:text-xs md:text-sm lg:text-base">and Applied Mathematics - Digital Science in Africa</span>
               </h1>
               
-              <div className="flex flex-wrap items-center justify-center mt-2 text-sm md:text-base lg:text-lg gap-2">
-                <span className="text-red-600 font-bold">21 - 24 Octobre 2026</span>
-                <span className="text-gray-900 hidden sm:inline font-bold">●</span>
-                <span className="text-gray-900 font-semibold">Abomey-calavi, Cotonou</span>
+              <div className="flex flex-wrap items-center justify-center mt-1 sm:mt-2 text-[10px] sm:text-xs md:text-sm lg:text-base gap-1 sm:gap-2">
+                <span className="text-red-600 font-bold whitespace-nowrap">21 - 24 Octobre 2026</span>
+                <span className="text-gray-900 hidden xs:inline font-bold">●</span>
+                <span className="text-gray-900 font-semibold whitespace-nowrap">Abomey-calavi, Cotonou</span>
               </div>
             </div>
 
             {/* Logos droite - Université et ASOS sur la même ligne */}
-            <div className="flex-shrink-0 flex flex-row items-center justify-end gap-2 md:gap-3">
+            <div className="flex-shrink-0 flex flex-row items-center justify-end gap-1 sm:gap-2 md:gap-3">
               {/* Logo Université */}
-              <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20">
+              <div className="w-10 h-10 max-[400px]:w-8 max-[400px]:h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20">
                 <img
                   src="/assets/logo2.png"
                   alt="Logo Université"
@@ -172,7 +170,7 @@ const Header = () => {
                     console.error('Logo université non trouvé');
                     e.target.parentElement.innerHTML = `
                       <div class="w-full h-full rounded-full bg-white border-2 border-gray-300 flex items-center justify-center">
-                        <div class="text-xs text-center text-gray-600 font-semibold">University<br/>Logo</div>
+                        <div class="text-[8px] sm:text-[10px] md:text-xs text-center text-gray-600 font-semibold">University<br/>Logo</div>
                       </div>
                     `;
                   }}
@@ -180,7 +178,7 @@ const Header = () => {
               </div>
               
               {/* Logo ASOS */}
-              <div className="w-16 h-10 sm:w-20 sm:h-12 md:w-24 md:h-14">
+              <div className="w-12 h-8 max-[400px]:w-10 max-[400px]:h-6 sm:w-16 sm:h-10 md:w-20 md:h-12 lg:w-24 lg:h-14">
                 <img
                   src="/assets/logo3.png"
                   alt="Logo ASOS Africa"
@@ -190,8 +188,8 @@ const Header = () => {
                     e.target.parentElement.innerHTML = `
                       <div class="w-full h-full bg-white rounded border border-gray-300 flex items-center justify-center">
                         <div class="text-center">
-                          <div class="text-base md:text-lg font-bold text-gray-800">asos</div>
-                          <div class="text-xs text-gray-600">Africa</div>
+                          <div class="text-xs sm:text-sm md:text-base lg:text-lg font-bold text-gray-800">asos</div>
+                          <div class="text-[8px] sm:text-[10px] md:text-xs text-gray-600">Africa</div>
                         </div>
                       </div>
                     `;
