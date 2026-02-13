@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom
 import HomePage from './pages/HomePage';
 import OrganizationCommittee from './pages/LocalCommittee';
 import TechnicalProgramCommittee from './pages/TechnicalProgramCommittee';
+import CallForPapers from './pages/CallForPapers';
 
 // Composant de mise en page global incluant la navigation
 const Layout = () => (
@@ -22,7 +23,7 @@ function App() {
 
           {/* Routes pour CALLS (mis à jour) */}
           <Route path="/calls" element={<div>Calls Page</div>} />
-          <Route path="/calls/papers" element={<div>Call for Papers</div>} />
+          <Route path="/calls/papers" element={<CallForPapers />} />
           <Route path="/calls/cari-workshops" element={<div>Call for Papers for CARI Workshops</div>} />
           <Route path="/calls/satellite-events" element={<div>Call for Papers for Satellite Events</div>} />
 
