@@ -5,10 +5,10 @@ import Navigation from '../components/Navigation';
 
 const CallForPapers = () => {
   const [openSections, setOpenSections] = useState({
-    overview: false,
-    scope: false,
-    dates: false,
-    submission: false,
+    overview: true,
+    scope: true,
+    dates: true,
+    submission: true,
   });
 
   const toggleSection = (section) => {
