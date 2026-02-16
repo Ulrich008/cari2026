@@ -342,7 +342,7 @@ const CallForPapers = () => {
 
         {/* FOR MORE INFORMATION Section */}
         <section className="mb-8 mt-8">
-          <div className="border-t-4 border-b-4 border-gray-800 py-4">
+          <div className="border-t-4 border-b-4 border-green-600 py-4">
             <h2 className="text-center text-lg md:text-xl font-bold text-gray-900 uppercase mb-4">
               FOR MORE INFORMATION
             </h2>
