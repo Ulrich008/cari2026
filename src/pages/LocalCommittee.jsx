@@ -87,7 +87,7 @@ const LocalCommittee = () => {
     {
       name: 'kokou ASSOGBA',
       title: 'EPAC/ Université d\'Abomey-Calavi(UAC)',
-      image: '/assets/m3.jfif',
+      image: '/assets/Marc-Assogba.webp',
     },
     {
       name: 'Ratheil HOUNDJI',

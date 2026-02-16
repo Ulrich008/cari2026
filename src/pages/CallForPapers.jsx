@@ -350,12 +350,12 @@ const CallForPapers = () => {
               <p className="text-gray-900">
                 <span className="font-bold">Web:</span>{' '}
                 <a 
-                  href="https://asds.africa/" 
+                  href="https://cari-conf.bj" 
                   className="text-blue-600 hover:text-blue-800 underline"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  https://asds.africa/
+                   cari-conf.bj
                 </a>
               </p>
               <p className="text-gray-900">
@@ -364,7 +364,7 @@ const CallForPapers = () => {
                   href="mailto:Cari2026bi@gmail.com" 
                   className="text-blue-600 hover:text-blue-800 underline"
                 >
-                  Cari2026bi@gmail.com
+                  caribj2026@gmail.com
                 </a>
               </p>
             </div>
