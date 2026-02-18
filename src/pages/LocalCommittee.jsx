@@ -42,7 +42,7 @@ const LocalCommittee = () => {
   ];
 
   const generalChair = {
-    name: 'S. Arnaud R. M. Ahouandjinou',
+    name: 'S. Arnaud R. M. AHOUANDJINOU',
     title: '(Université d\'Abomey-Calavi - UAC), Bénin',
     image: '/assets/Arnaud.png',
   };
@@ -56,7 +56,7 @@ const LocalCommittee = () => {
     {
       name: 'César VIHO',
       title: 'IRISA/Université de Rennes, France',
-      image: '/assets/R.jfif',
+      image: '/assets/VIHO.jpeg',
     },
   ];
 
@@ -87,7 +87,7 @@ const LocalCommittee = () => {
     {
       name: 'kokou ASSOGBA',
       title: 'EPAC/ Université d\'Abomey-Calavi(UAC)',
-      image: '/assets/Marc-Assogba.webp',
+      image: '/assets/assogba.jpeg',
     },
     {
       name: 'Ratheil HOUNDJI',

@@ -13,9 +13,9 @@ const TechnicalProgramCommittee = () => {
   // CHAIR
   const chairs = [
     {
-      name: 'Mathieu Roche Cirad',
-      title: 'TETIS, France',
-      image: '/assets/roche.png',
+      name: 'Mathieu ROCHE',
+      title: 'CIRAD, UMR TETIS, France  ',
+      image: '/assets/roche.jpeg',
     },
   ];
 
@@ -24,10 +24,10 @@ const TechnicalProgramCommittee = () => {
     {
       name: 'César VIHO',
       title: 'IRISA/Université de Rennes, France',
-      image: '/assets/R.jfif',
+      image: '/assets/VIHO.jpeg',
     },
     {
-      name: 'Paulin Melatagia',
+      name: 'Paulin MELATAGIA',
       title: 'Univ. Yaoundé & ASDS, Cameroun',
       image: '/assets/paulin.png',
     },
@@ -36,14 +36,14 @@ const TechnicalProgramCommittee = () => {
   // TRACK CO-CHAIRS APPLIED MATHEMATICS
   const trackMathCoChairs = [
     {
-      name: 'Nabil Gmati,ENIT',
+      name: 'Nabil GMATI',
       title: 'ENIT, Université de Tunis El Manar, Tunisie',
       image: '/assets/nabil.webp',
     },
     {
-      name: 'Suzanne Touzeau',
+      name: 'Suzanne TOUZEAU',
       title: 'INRAE, France',
-      image: '/assets/SUZ.jfif',
+      image: '/assets/suz.jpeg',
     },
   ];
 
