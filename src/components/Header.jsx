@@ -146,7 +146,7 @@ const Header = () => {
                 <span className="text-red-600 text-sm sm:text-base md:text-xl lg:text-2xl xl:text-4xl font-extrabold">
                   18<sup className="text-[8px] sm:text-xs md:text-sm lg:text-base align-super">th</sup>
                 </span>
-                <span className="text-gray-900"> African conference on Research in Computer Science </span>
+                <span className="text-gray-900"> African conference on Research in Computer Science     </span>
                 <br className="hidden sm:block" />
                 <span className="text-gray-900">and Applied Mathematics</span>
               </h1>

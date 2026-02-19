@@ -135,8 +135,8 @@ const LocalCommittee = () => {
     },
     {
       name: 'Erick ADJE',
-      title: 'IFRI/Université d\'Abomey-Calavi (UAC)',
-      image: '/assets/ADJE.jfif',
+      title: 'Université du Littoral Côte d\'Opale (ULCO) / Laboratoire d\'Informatique Signal et Image de la Côte d\'Opale, France',
+      image: '/assets/erick.jpg.jpeg',
     },
   ];
 
