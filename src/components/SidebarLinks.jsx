@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const SidebarLinks = () => {
   const [name, setName] = useState('');
@@ -42,6 +43,7 @@ const SidebarLinks = () => {
     {
       title: 'PROCEEDINGS',
       bg: 'bg-red-500',
+      link: '/proceedings', // IMPORTANT : le lien doit correspondre à la route
       icon: (
         <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM6 20V4h7v5h5v11H6zm2-6h8v2H8v-2zm0 4h8v2H8v-2zm0-8h5v2H8v-2z"/>
@@ -52,30 +54,44 @@ const SidebarLinks = () => {
 
   return (
     <div className="space-y-3 pt-16">
-      {/* Boutons de liens rapides - Pleine largeur */}
+      {/* Liens rapides */}
       <div className="space-y-3">
-        {links.map((link, index) => (
-          <button
-            key={index}
-            className={`
-              ${link.bg} text-white 
-              w-full
-              p-3 sm:p-4 
-              rounded-lg cursor-pointer hover:opacity-90 transition-opacity 
-              flex items-center gap-3 shadow-md
-            `}
-          >
-            <div className="flex-shrink-0">
-              {link.icon}
-            </div>
-            <h3 className="font-bold text-sm md:text-base uppercase">
-              {link.title}
-            </h3>
-          </button>
-        ))}
+        {links.map((item, index) => {
+          const commonClasses = `${item.bg} text-white w-full p-3 sm:p-4 rounded-lg cursor-pointer hover:opacity-90 transition-opacity flex items-center gap-3 shadow-md`;
+
+          // Si l'élément a une propriété 'link', on utilise Link pour la navigation
+          if (item.link) {
+            return (
+              <Link
+                key={index}
+                to={item.link}
+                className={commonClasses}
+              >
+                <div className="flex-shrink-0">{item.icon}</div>
+                <h3 className="font-bold text-sm md:text-base uppercase">
+                  {item.title}
+                </h3>
+              </Link>
+            );
+          } else {
+            // Sinon, on garde un bouton (pour PROGRAM BOOK, PHOTO GALLERY, IMPORTANT DATES)
+            return (
+              <button
+                key={index}
+                className={commonClasses}
+                // Si besoin, on peut ajouter un onClick plus tard
+              >
+                <div className="flex-shrink-0">{item.icon}</div>
+                <h3 className="font-bold text-sm md:text-base uppercase">
+                  {item.title}
+                </h3>
+              </button>
+            );
+          }
+        })}
       </div>
 
-      {/* Abonnement à la newsletter - Pleine largeur */}
+      {/* Newsletter - inchangé */}
       <div className="w-full bg-green-600 p-4 rounded-lg shadow-md">
         <h3 className="font-bold text-white text-sm sm:text-base mb-4 uppercase">
           NEWSLETTERS SUBSCRIPTION
