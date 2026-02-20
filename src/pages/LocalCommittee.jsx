@@ -43,15 +43,15 @@ const LocalCommittee = () => {
 
   const generalChair = {
     name: 'S. Arnaud R. M. AHOUANDJINOU',
-    title: '(Université d\'Abomey-Calavi - UAC), Bénin',
+    title: 'Université d\'Abomey-Calavi - UAC, Bénin',
     image: '/assets/Arnaud.png',
   };
 
   const vicesGeneralsChairs = [
     {
       name: 'Kamel BARKAOUI',
-      title: 'CNAM & ASDS,Paris,France',
-      image: '/assets/kamel.webp',
+      title: 'ASDS & CNAM Paris & Académie Tunisienne des Sciences, des Lettres et des Arts, Paris, France',
+      image: '/assets/kamel.jpeg',
     },
     {
       name: 'César VIHO',
@@ -63,12 +63,12 @@ const LocalCommittee = () => {
   const organizationChairs = [
     {
       name: 'Eugène C. EZIN',
-      title: 'IFRI/Université d\'Abomey-Calavi(UAC), Bénin',
+      title: 'IFRI/Université d\'Abomey-Calavi - UAC, Bénin',
       image: '/assets/dir.webp',
     },
     {
       name: 'Carlos OGOUYADJOU',
-      title: 'IMSP/Université d\'Abomey-Calavi(UAC), Bénin',
+      title: 'IMSP/Université d\'Abomey-Calavi - UAC, Bénin',
       image: '/assets/c1.jfif',
     },
   ];
@@ -76,27 +76,27 @@ const LocalCommittee = () => {
   const organizationMembers = [
     {
       name: 'Guy DEGLA',
-      title: 'IMSP/Université d\'Abomey-Calavi(UAC), CIMPA-Chair',
+      title: 'IMSP/Université d\'Abomey-Calavi - UAC, Bénin, CIMPA-Chair',
       image: '/assets/m1.webp',
     },
     {
       name: 'Jules DEGILA',
-      title: 'IMSP/Université d\'Abomey-Calavi(UAC)',
+      title: 'IMSP/Université d\'Abomey-Calavi - UAC, Bénin',
       image: '/assets/m2.jpg',
     },
     {
       name: 'kokou ASSOGBA',
-      title: 'EPAC/ Université d\'Abomey-Calavi(UAC)',
+      title: 'EPAC/Université d\'Abomey-Calavi - UAC, Bénin',
       image: '/assets/assogba.jpeg',
     },
     {
       name: 'Ratheil HOUNDJI',
-      title: 'IFRI/Université d\'Abomey-Calavi(UAC)',
+      title: 'IFRI/Université d\'Abomey-Calavi - UAC, Bénin',
       image: '/assets/Ra.jfif',
     },
     {
       name: 'Pélégie HOUNGUE',
-      title: 'IMSP/Université d\'Abomey-Calavi(UAC)',
+      title: 'IMSP/Université d\'Abomey-Calavi - UAC, Bénin',
       image: '/assets/Pelagie.jpg',
     },
     {
@@ -109,7 +109,7 @@ const LocalCommittee = () => {
   const keynotesChair = [
     {
       name: 'Jules DEGILA',
-      title: 'IMSP/Université d\'Abomey-Calavi(UAC)',
+      title: 'IMSP/Université d\'Abomey-Calavi - UAC, Bénin',
       image: '/assets/m2.jpg',
     },
   ];
@@ -117,7 +117,7 @@ const LocalCommittee = () => {
   const communicationsChair = [
     {
       name: 'Ratheil HOUNDJI',
-      title: 'IFRI/Université d\'Abomey-Calavi(UAC)',
+      title: 'IFRI/Université d\'Abomey-Calavi - UAC, Bénin',
       image: '/assets/Ra.jfif',
     },
   ];
@@ -125,12 +125,12 @@ const LocalCommittee = () => {
   const webPublicityChairs = [
     {
       name: 'Probus KIKI',
-      title: 'IFRI/Université d\'Abomey-Calavi (UAC)',
+      title: 'IFRI/Université d\'Abomey-Calavi - UAC, Bénin',
       image: '/assets/KIKI.jpg',
     },
     {
       name: 'Jerome ZOHOU',
-      title: 'IFRI/Université d\'Abomey-Calavi (UAC)',
+      title: 'IFRI/Université d\'Abomey-Calavi - UAC, Bénin',
       image: '/assets/ZOHOU.jfif',
     },
     {
@@ -269,7 +269,7 @@ const LocalCommittee = () => {
             className="w-full flex items-center justify-between bg-white border-b-4 border-green-600 px-4 py-3 hover:bg-gray-50 transition-colors"
           >
             <h2 className="text-lg md:text-xl font-bold text-green-600 uppercase">
-              VICES GENERALS CHAIRS
+              VICE GENERAL CHAIRS
             </h2>
             <svg
               className={`w-6 h-6 text-green-600 transition-transform duration-300 ${

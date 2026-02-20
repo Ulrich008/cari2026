@@ -124,7 +124,7 @@ const CallForPapers = () => {
             <div className="bg-gray-100 p-6">
               <div className="space-y-4 text-gray-900 leading-relaxed">
                 <p>
-                  CARI 2026 invites submissions of full papers presenting original research results and short papers reporting work in progress or position papers.
+                  CARI 2026 invites submissions of  papers presenting original research results and short papers reporting work in progress or position papers.
                 </p>
                 <p>
                   The conference is structured around two main tracks: <span className="font-bold">Computer Science</span> and <span className="font-bold">Applied Mathematics</span>. Topics of interest include, but are not limited to:

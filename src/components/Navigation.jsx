@@ -43,8 +43,9 @@ const Navigation = () => {
         { title: 'WORKSHOP ON NLP FOR AFRICAN AND LOW-RESOURCE LANGUAGES', link: '/program/nlp-african-languages' },
         { title: 'WORKSHOP ON CYBERSECURITY IN AFRICA', link: '/program/cybersecurity-africa' },
         { title: 'INTERNATIONAL COOPERATION SESSION', link: '/program/international-cooperation' },
-        { title: 'SATELLITE EVENTS (CIMPA SCHOOL AND SUMMER SCHOOL)', link: '/program/satellite-events' },
+        { title: 'SATELLITE EVENTS: CIMPA SCHOOL AND SUMMER SCHOOL', link: '/program/satellite-events' },
       ],
+
     },
     {
       title: 'REGISTRATION',
