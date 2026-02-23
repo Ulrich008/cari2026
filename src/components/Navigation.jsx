@@ -55,10 +55,7 @@ const Navigation = () => {
       title: 'VENUE',
       link: '/venue',
     },
-    {
-      title: 'PARTNERS',
-      link: '/partners',
-    },
+
     {
       title: 'SPONSORS',
       link: '/sponsors',
