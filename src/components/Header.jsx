@@ -55,10 +55,10 @@ const Header = () => {
           ))}
         </div>
 
-        {/* Bouton précédent - position ajustée pour tenir compte du header agrandi */}
+        {/* Bouton précédent - position ajustée selon la hauteur du header */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 sm:left-6 top-[calc(50%+50px)] sm:top-[calc(50%+55px)] md:top-[calc(50%+60px)] lg:top-[calc(50%+70px)] -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 p-2 sm:p-2.5 rounded-full shadow-xl transition-all duration-200 z-10 hover:scale-110"
+          className="absolute left-4 sm:left-6 top-[calc(50%+40px)] sm:top-[calc(50%+45px)] md:top-[calc(50%+50px)] lg:top-[calc(50%+60px)] -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 p-2 sm:p-2.5 rounded-full shadow-xl transition-all duration-200 z-10 hover:scale-110"
           aria-label="Image précédente"
         >
           <svg
@@ -80,7 +80,7 @@ const Header = () => {
         {/* Bouton suivant */}
         <button
           onClick={nextSlide}
-          className="absolute right-4 sm:right-6 top-[calc(50%+50px)] sm:top-[calc(50%+55px)] md:top-[calc(50%+60px)] lg:top-[calc(50%+70px)] -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 p-2 sm:p-2.5 rounded-full shadow-xl transition-all duration-200 z-10 hover:scale-110"
+          className="absolute right-4 sm:right-6 top-[calc(50%+40px)] sm:top-[calc(50%+45px)] md:top-[calc(50%+50px)] lg:top-[calc(50%+60px)] -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 p-2 sm:p-2.5 rounded-full shadow-xl transition-all duration-200 z-10 hover:scale-110"
           aria-label="Image suivante"
         >
           <svg
@@ -116,17 +116,17 @@ const Header = () => {
         </div>
       </div>
 
-      {/* En-tête avec logos et titre - superposé (agrandi) */}
-      <header className="absolute top-0 left-0 right-0 bg-white bg-opacity-70 shadow-md z-20 py-3 sm:py-4 md:py-5">
-        <div className="container mx-auto px-2 sm:px-4">
+      {/* En-tête avec logos et titre - superposé */}
+      <header className="absolute top-0 left-0 right-0 bg-white bg-opacity-70 shadow-md z-20">
+        <div className="container mx-auto px-2 sm:px-4 py-2 sm:py-3">
           <div className="flex items-center justify-between gap-2 sm:gap-4">
             
-            {/* Logo gauche - CARI 2026 (agrandi) */}
-            <div className="flex-shrink-0 style={{ width: '150px' }} max-[400px]:w-14 sm:w-24 md:w-28 lg:w-32">
+            {/* Logo gauche - CARI 2026 */}
+            <div className="flex-shrink-0 w-16 max-[400px]:w-12 sm:w-20 md:w-24 lg:w-28">
               <img
                 src="/assets/logo1.png"
                 alt="Logo CARI 2026"
-                className="w-full h-full object-cover"
+                className="w-full h-auto object-contain"
                 onError={(e) => {
                   console.error('Logo CARI non trouvé');
                   e.target.parentElement.innerHTML = `
@@ -159,10 +159,10 @@ const Header = () => {
               </div>
             </div>
 
-            {/* Logos droite - Université et ASOS sur la même ligne (agrandis) */}
-            <div className="flex-shrink-0 flex flex-row items-center justify-end gap-2 sm:gap-3 md:gap-4">
-              {/* Logo Université (agrandi) */}
-              <div className="w-12 h-12 max-[400px]:w-10 max-[400px]:h-10 sm:w-14 sm:h-14 md:w-20 md:h-20 lg:w-24 lg:h-24">
+            {/* Logos droite - Université et ASOS sur la même ligne */}
+            <div className="flex-shrink-0 flex flex-row items-center justify-end gap-1 sm:gap-2 md:gap-3">
+              {/* Logo Université */}
+              <div className="w-10 h-10 max-[400px]:w-8 max-[400px]:h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20">
                 <img
                   src="/assets/logo2.png"
                   alt="Logo Université"
@@ -178,8 +178,8 @@ const Header = () => {
                 />
               </div>
               
-              {/* Logo ASOS (agrandi) */}
-              <div className="w-14 h-10 max-[400px]:w-12 max-[400px]:h-8 sm:w-18 sm:h-12 md:w-24 md:h-16 lg:w-28 lg:h-18">
+              {/* Logo ASOS */}
+              <div className="w-12 h-8 max-[400px]:w-10 max-[400px]:h-6 sm:w-16 sm:h-10 md:w-20 md:h-12 lg:w-24 lg:h-14">
                 <img
                   src="/assets/logo3.png"
                   alt="Logo ASOS Africa"
