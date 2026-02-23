@@ -97,7 +97,7 @@ const LocalCommittee = () => {
     {
       name: 'Pélégie HOUNGUE',
       title: 'IMSP/Université d\'Abomey-Calavi - UAC, Bénin',
-      image: '/assets/Pelagie.jpg',
+      image: '/assets/pe.jpeg',
     },
     {
       name: 'Gwenaëlle LANNEC',

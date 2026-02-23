@@ -56,6 +56,10 @@ const Navigation = () => {
       link: '/venue',
     },
     {
+      title: 'PARTNERS',
+      link: '/partners',
+    },
+    {
       title: 'SPONSORS',
       link: '/sponsors',
     },

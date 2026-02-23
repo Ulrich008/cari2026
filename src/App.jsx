@@ -6,6 +6,9 @@ import TechnicalProgramCommittee from './pages/TechnicalProgramCommittee';
 import CallForPapers from './pages/CallForPapers';
 import UnderConstruction from './pages/UnderConstruction';
 import Proceedings from './pages/Proceedings';
+import Contact from './pages/Contact';
+import Partners from './pages/Partners';
+import Sponsors from './pages/Sponsors';
 
 // Composant de mise en page global incluant la navigation
 const Layout = () => (
@@ -47,8 +50,9 @@ function App() {
           {/* Autres pages sans sous-menus */}
           <Route path="/registration" element={<UnderConstruction />} />
           <Route path="/venue" element={<UnderConstruction />} />
-          <Route path="/sponsors" element={<UnderConstruction />} />
-          <Route path="/contact" element={<UnderConstruction />} />
+          <Route path="/sponsors" element={<Sponsors/>} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/partners" element={<Partners />} />
           <Route path="/proceedings" element={<Proceedings/>} />
         </Route>
       </Routes>
