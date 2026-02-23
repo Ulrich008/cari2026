@@ -7,7 +7,6 @@ import CallForPapers from './pages/CallForPapers';
 import UnderConstruction from './pages/UnderConstruction';
 import Proceedings from './pages/Proceedings';
 import Contact from './pages/Contact';
-import Partners from './pages/Partners';
 import Sponsors from './pages/Sponsors';
 
 // Composant de mise en page global incluant la navigation
@@ -52,7 +51,6 @@ function App() {
           <Route path="/venue" element={<UnderConstruction />} />
           <Route path="/sponsors" element={<Sponsors/>} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/partners" element={<Partners />} />
           <Route path="/proceedings" element={<Proceedings/>} />
         </Route>
       </Routes>
