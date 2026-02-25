@@ -43,7 +43,8 @@ const Countdown = () => {
 
   return (
     <div className="w-full px-2 sm:px-4">
-      <div 
+      <div
+        id="countdown"
         className="relative rounded-xl sm:rounded-2xl overflow-hidden w-full mx-auto"
         style={{
           backgroundImage: 'url(/assets/sofitel.jpeg)',

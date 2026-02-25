@@ -8,6 +8,9 @@ import UnderConstruction from './pages/UnderConstruction';
 import Proceedings from './pages/Proceedings';
 import Contact from './pages/Contact';
 import Sponsors from './pages/Sponsors';
+import Venue from './pages/Venue';
+import PhotoGallery from './pages/PhotoGallery';
+
 
 // Composant de mise en page global incluant la navigation
 const Layout = () => (
@@ -48,10 +51,11 @@ function App() {
 
           {/* Autres pages sans sous-menus */}
           <Route path="/registration" element={<UnderConstruction />} />
-          <Route path="/venue" element={<UnderConstruction />} />
+          <Route path="/venue" element={<Venue />} />
           <Route path="/sponsors" element={<Sponsors/>} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/proceedings" element={<Proceedings/>} />
+          <Route path="/photo-gallery" element={<PhotoGallery />} />
         </Route>
       </Routes>
     </Router>

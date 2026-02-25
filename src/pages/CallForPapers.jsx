@@ -347,7 +347,7 @@ const CallForPapers = () => {
               FOR MORE INFORMATION
             </h2>
             <div className="text-center space-y-2">
-              <p className="text-gray-900">
+              {/* <p className="text-gray-900">
                 <span className="font-bold">Web:</span>{' '}
                 <a 
                   href="https://cari-conf.bj" 
@@ -357,7 +357,7 @@ const CallForPapers = () => {
                 >
                    cari-conf.bj
                 </a>
-              </p>
+              </p> */}
               <p className="text-gray-900">
                 <span className="font-bold">E-mail:</span>{' '}
                 <a 

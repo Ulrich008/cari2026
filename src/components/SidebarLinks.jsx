@@ -25,6 +25,7 @@ const SidebarLinks = () => {
     {
       title: 'PHOTO GALLERY',
       bg: 'bg-red-600',
+      link: '/photo-gallery',
       icon: (
         <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
           <path d="M9 3L7.17 5H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3.17L15 3H9zm3 15a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
@@ -33,6 +34,7 @@ const SidebarLinks = () => {
     },
     {
       title: 'IMPORTANT DATES',
+      link: '#countdown',
       bg: 'bg-red-500',
       icon: (
         <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -43,7 +45,7 @@ const SidebarLinks = () => {
     {
       title: 'PROCEEDINGS',
       bg: 'bg-red-500',
-      link: '/proceedings', // IMPORTANT : le lien doit correspondre à la route
+      link: '/proceedings',
       icon: (
         <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM6 20V4h7v5h5v11H6zm2-6h8v2H8v-2zm0 4h8v2H8v-2zm0-8h5v2H8v-2z"/>
@@ -59,27 +61,43 @@ const SidebarLinks = () => {
         {links.map((item, index) => {
           const commonClasses = `${item.bg} text-white w-full p-3 sm:p-4 rounded-lg cursor-pointer hover:opacity-90 transition-opacity flex items-center gap-3 shadow-md`;
 
-          // Si l'élément a une propriété 'link', on utilise Link pour la navigation
+          // Si l'élément a une propriété 'link'
           if (item.link) {
-            return (
-              <Link
-                key={index}
-                to={item.link}
-                className={commonClasses}
-              >
-                <div className="flex-shrink-0">{item.icon}</div>
-                <h3 className="font-bold text-sm md:text-base uppercase">
-                  {item.title}
-                </h3>
-              </Link>
-            );
+            // Si le lien commence par '#', c'est une ancre → on utilise <a>
+            if (item.link.startsWith('#')) {
+              return (
+                <a
+                  key={index}
+                  href={item.link}
+                  className={commonClasses}
+                >
+                  <div className="flex-shrink-0">{item.icon}</div>
+                  <h3 className="font-bold text-sm md:text-base uppercase">
+                    {item.title}
+                  </h3>
+                </a>
+              );
+            } else {
+              // Sinon, c'est une route → on utilise Link de React Router
+              return (
+                <Link
+                  key={index}
+                  to={item.link}
+                  className={commonClasses}
+                >
+                  <div className="flex-shrink-0">{item.icon}</div>
+                  <h3 className="font-bold text-sm md:text-base uppercase">
+                    {item.title}
+                  </h3>
+                </Link>
+              );
+            }
           } else {
-            // Sinon, on garde un bouton (pour PROGRAM BOOK, PHOTO GALLERY, IMPORTANT DATES)
+            // Aucun lien → simple bouton (pour PROGRAM BOOK par exemple)
             return (
               <button
                 key={index}
                 className={commonClasses}
-                // Si besoin, on peut ajouter un onClick plus tard
               >
                 <div className="flex-shrink-0">{item.icon}</div>
                 <h3 className="font-bold text-sm md:text-base uppercase">
