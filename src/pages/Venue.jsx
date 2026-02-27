@@ -214,7 +214,7 @@ const Venue = () => {
                     <p className="mt-4">
                       <span className="font-semibold">For visa support:</span>{' '}
                       <a href="mailto:visa@cari2026.org" className="text-blue-600 hover:text-blue-800 underline">
-                        visa@cari2026.org
+                        caribj2026@gmail.com
                       </a>
                     </p>
                   </div>

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect } from 'react';
 import Header from '../components/Header';
+import { useLocation } from 'react-router-dom'; 
 import Footer from '../components/Footer';
 import Navigation from '../components/Navigation';
 
@@ -10,6 +11,15 @@ const CallForPapers = () => {
     dates: true,
     submission: true,
   });
+
+  const location = useLocation();   // ← pour détecter l'ancre
+
+  // Effet pour ouvrir la section "dates" si l'URL contient #important-dates
+  useEffect(() => {
+    if (location.hash === '#important-dates') {
+      setOpenSections(prev => ({ ...prev, dates: true }));
+    }
+  }, [location]);
 
   const toggleSection = (section) => {
     setOpenSections(prev => ({
@@ -202,7 +212,7 @@ const CallForPapers = () => {
         </section>
 
         {/* IMPORTANT DATES Section */}
-        <section className="mb-4">
+        <section  id="important-dates" className="mb-4">
           <button
             onClick={() => toggleSection('dates')}
             className="w-full flex items-center justify-between bg-white border-b-4 border-green-600 px-4 py-3 hover:bg-gray-50 transition-colors"

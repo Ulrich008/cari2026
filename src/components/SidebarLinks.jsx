@@ -34,7 +34,7 @@ const SidebarLinks = () => {
     },
     {
       title: 'IMPORTANT DATES',
-      link: '#countdown',
+      link: '/calls/papers#important-dates',   // ← MODIFICATION ICI
       bg: 'bg-red-500',
       icon: (
         <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -61,7 +61,6 @@ const SidebarLinks = () => {
         {links.map((item, index) => {
           const commonClasses = `${item.bg} text-white w-full p-3 sm:p-4 rounded-lg cursor-pointer hover:opacity-90 transition-opacity flex items-center gap-3 shadow-md`;
 
-          // Si l'élément a une propriété 'link'
           if (item.link) {
             // Si le lien commence par '#', c'est une ancre → on utilise <a>
             if (item.link.startsWith('#')) {
@@ -93,7 +92,7 @@ const SidebarLinks = () => {
               );
             }
           } else {
-            // Aucun lien → simple bouton (pour PROGRAM BOOK par exemple)
+            // Aucun lien → simple bouton
             return (
               <button
                 key={index}
@@ -114,7 +113,6 @@ const SidebarLinks = () => {
         <h3 className="font-bold text-white text-sm sm:text-base mb-4 uppercase">
           NEWSLETTERS SUBSCRIPTION
         </h3>
-
         <form onSubmit={handleSubscribe} className="space-y-3">
           <input
             type="text"
