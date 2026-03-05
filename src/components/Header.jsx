@@ -148,20 +148,20 @@ const Header = () => {
       </div>
 
       {/* En-tête avec logos et titre - superposé */}
-      <header className="absolute top-0 left-0 right-0 bg-white bg-opacity-70 shadow-md z-20">
+      <header className="absolute top-0 left-0 right-0 bg-white bg-opacity-50 shadow-md z-20">
         <div className="container mx-auto px-2 sm:px-4 py-2 sm:py-3">
           <div className="flex items-center justify-between gap-2 sm:gap-4">
             
             {/* Logo gauche - CARI 2026 - Cliquable vers l'accueil */}
             <div 
-              className="flex-shrink-0 w-16 max-[400px]:w-12 sm:w-20 md:w-24 lg:w-28 cursor-pointer z-30"
+              className="flex-shrink-0 w-24 max-[400px]:w-16 sm:w-28 md:w-32 lg:w-36 xl:w-40 cursor-pointer z-30"
               onClick={(e) => {
                 e.stopPropagation();
                 handleHomeClick();
               }}
             >
               <img
-                src="/assets/logo1.png"
+                src="/assets/cari.png"
                 alt="Logo CARI 2026"
                 className="w-full h-auto object-contain"
                 onError={(e) => {
