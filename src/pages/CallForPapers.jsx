@@ -1,4 +1,4 @@
-import React, { useState ,useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Header from '../components/Header';
 import { useLocation } from 'react-router-dom'; 
 import Footer from '../components/Footer';
@@ -12,12 +12,24 @@ const CallForPapers = () => {
     submission: true,
   });
 
-  const location = useLocation();   // ← pour détecter l'ancre
+  const location = useLocation();
+  const datesRef = useRef(null);
 
-  // Effet pour ouvrir la section "dates" si l'URL contient #important-dates
+  // Effet pour gérer le défilement vers l'ancre
   useEffect(() => {
     if (location.hash === '#important-dates') {
+      // Ouvrir la section des dates
       setOpenSections(prev => ({ ...prev, dates: true }));
+      
+      // Attendre que la section soit ouverte (avec un petit délai pour l'animation)
+      setTimeout(() => {
+        if (datesRef.current) {
+          datesRef.current.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 100);
     }
   }, [location]);
 
@@ -134,7 +146,7 @@ const CallForPapers = () => {
             <div className="bg-gray-100 p-6">
               <div className="space-y-4 text-gray-900 leading-relaxed">
                 <p>
-                  CARI 2026 invites submissions of  papers presenting original research results and short papers reporting work in progress or position papers.
+                  CARI 2026 invites submissions of papers presenting original research results and short papers reporting work in progress or position papers.
                 </p>
                 <p>
                   The conference is structured around two main tracks: <span className="font-bold">Computer Science</span> and <span className="font-bold">Applied Mathematics</span>. Topics of interest include, but are not limited to:
@@ -212,7 +224,11 @@ const CallForPapers = () => {
         </section>
 
         {/* IMPORTANT DATES Section */}
-        <section  id="important-dates" className="mb-4">
+        <section 
+          id="important-dates" 
+          ref={datesRef}
+          className="mb-4 scroll-mt-24" // scroll-mt-24 pour éviter que le header cache le titre
+        >
           <button
             onClick={() => toggleSection('dates')}
             className="w-full flex items-center justify-between bg-white border-b-4 border-green-600 px-4 py-3 hover:bg-gray-50 transition-colors"
@@ -357,17 +373,6 @@ const CallForPapers = () => {
               FOR MORE INFORMATION
             </h2>
             <div className="text-center space-y-2">
-              {/* <p className="text-gray-900">
-                <span className="font-bold">Web:</span>{' '}
-                <a 
-                  href="https://cari-conf.bj" 
-                  className="text-blue-600 hover:text-blue-800 underline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                   cari-conf.bj
-                </a>
-              </p> */}
               <p className="text-gray-900">
                 <span className="font-bold">E-mail:</span>{' '}
                 <a 

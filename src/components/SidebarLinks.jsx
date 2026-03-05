@@ -34,7 +34,7 @@ const SidebarLinks = () => {
     },
     {
       title: 'IMPORTANT DATES',
-      link: '/calls/papers#important-dates',   // ← MODIFICATION ICI
+      link: '/calls/papers#important-dates',
       bg: 'bg-red-500',
       icon: (
         <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -62,8 +62,8 @@ const SidebarLinks = () => {
           const commonClasses = `${item.bg} text-white w-full p-3 sm:p-4 rounded-lg cursor-pointer hover:opacity-90 transition-opacity flex items-center gap-3 shadow-md`;
 
           if (item.link) {
-            // Si le lien commence par '#', c'est une ancre → on utilise <a>
-            if (item.link.startsWith('#')) {
+            // Si le lien contient '#', on utilise une balise <a> normale
+            if (item.link.includes('#')) {
               return (
                 <a
                   key={index}
@@ -108,7 +108,7 @@ const SidebarLinks = () => {
         })}
       </div>
 
-      {/* Newsletter - inchangé */}
+      {/* Newsletter */}
       <div className="w-full bg-green-600 p-4 rounded-lg shadow-md">
         <h3 className="font-bold text-white text-sm sm:text-base mb-4 uppercase">
           NEWSLETTERS SUBSCRIPTION
@@ -120,6 +120,7 @@ const SidebarLinks = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="w-full p-2 sm:p-3 rounded-lg border-2 border-white bg-white text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-300"
+            required
           />
           <input
             type="email"
@@ -127,6 +128,7 @@ const SidebarLinks = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="w-full p-2 sm:p-3 rounded-lg border-2 border-white bg-white text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-300"
+            required
           />
           <button
             type="submit"
