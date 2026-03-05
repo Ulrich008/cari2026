@@ -35,7 +35,7 @@ const LocalCommittee = () => {
       image: '/assets/h3.jfif',
     },
     {
-      name: 'Tahirou DJARRA',
+      name: 'Tahirou DJARA',
       title: 'Vice-Recteur chargé des affaires Académiques, Université d\'Abomey Calavi (UAC)',
       image: '/assets/h2.webp',
     },

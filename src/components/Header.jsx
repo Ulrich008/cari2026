@@ -153,7 +153,7 @@ const Header = () => {
               </h1>
               
               <div className="flex flex-wrap items-center justify-center mt-1 sm:mt-2 text-[10px] sm:text-xs md:text-sm lg:text-base gap-1 sm:gap-2">
-                <span className="text-red-600 font-bold whitespace-nowrap">21 - 24 Octobre 2026</span>
+                <span className="text-red-600 font-bold whitespace-nowrap">21 - 24 October 2026</span>
                 <span className="text-gray-900 hidden xs:inline font-bold">●</span>
                 <span className="text-gray-900 font-semibold whitespace-nowrap">Abomey-calavi, Cotonou</span>
               </div>

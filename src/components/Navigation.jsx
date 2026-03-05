@@ -178,34 +178,6 @@ const Navigation = () => {
               </div>
             ))}
           </div>
-
-          {/* Language selector - toujours visible */}
-          <div className="flex items-center gap-2 px-4">
-            <img
-              src="/path/to/uk-flag.png"
-              alt="English"
-              className="w-6 h-4"
-              onError={(e) => {
-                e.target.style.display = 'none';
-                e.target.nextSibling.style.display = 'inline';
-              }}
-            />
-            <span className="hidden">🇬🇧</span>
-            <span className="text-sm font-medium">En</span>
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </div>
         </div>
 
         {/* Menu mobile - affiché quand mobileMenuOpen est vrai */}

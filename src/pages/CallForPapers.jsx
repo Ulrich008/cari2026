@@ -246,7 +246,7 @@ const CallForPapers = () => {
               <div className="space-y-2 text-gray-900 leading-relaxed">
                 <p>
                   <span className="mr-2">-</span>
-                  <span className="font-bold">Abstract submission:</span> <span className="text-red-600 font-bold">23 March, 2026</span>
+                  <span className="font-bold">Abstract submission (optional):</span> <span className="text-red-600 font-bold">23 March, 2026</span>
                 </p>
                 <p>
                   <span className="mr-2">-</span>

@@ -39,7 +39,22 @@ const Sponsors = () => {
       name: 'IRD',
       logo: '/assets/ird.png',
       url: 'https://www.ird.fr/'
-    }
+    },
+    {
+      name: 'INRAE',
+      logo: '/assets/inrae.jpeg',
+      url: 'https://www.inrae.com/'
+    },
+    {
+      name: 'INRAE',
+      logo: '/assets/math.jpeg',
+      url: 'https://www.mathNum.com/'
+    },
+    {
+      name: 'INRAE',
+      logo: '/assets/inrae2.jpeg',
+      url: 'https://www.inrae.com/'
+    },
   ];
 
   const sponsors = [
@@ -58,6 +73,7 @@ const Sponsors = () => {
       logo: '/assets/huawei.png',
       url: 'https://www.huawei.com/'
     }
+
   ];
 
   return (
