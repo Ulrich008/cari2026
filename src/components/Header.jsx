@@ -29,8 +29,30 @@ const Header = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
+  // Fonction pour gérer la redirection vers la page d'accueil
+  const handleHomeClick = () => {
+    window.location.href = '/';
+  };
+
+  // Fonction pour gérer la redirection vers le site universitaire
+  const handleUniversityClick = () => {
+    window.open('https://www.uac.bj', '_blank');
+  };
+
+  // Fonction pour gérer la redirection vers le site ASOS
+  const handleAsosClick = () => {
+    window.open('https://www.asosafrica.org', '_blank');
+  };
+
   return (
     <div className="relative w-full">
+      {/* Bande transparente cliquable - redirige vers la page d'accueil */}
+      <div 
+        className="absolute inset-0 z-10 cursor-pointer"
+        onClick={handleHomeClick}
+        aria-label="Retour à l'accueil"
+      ></div>
+
       {/* Carrousel d'images - en arrière-plan plein écran */}
       <div className="relative w-full h-[350px] sm:h-[450px] md:h-[550px] lg:h-[600px] xl:h-[600px] overflow-hidden bg-gray-900">
         <div className="relative w-full h-full">
@@ -57,8 +79,11 @@ const Header = () => {
 
         {/* Bouton précédent - position ajustée selon la hauteur du header */}
         <button
-          onClick={prevSlide}
-          className="absolute left-4 sm:left-6 top-[calc(50%+40px)] sm:top-[calc(50%+45px)] md:top-[calc(50%+50px)] lg:top-[calc(50%+60px)] -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 p-2 sm:p-2.5 rounded-full shadow-xl transition-all duration-200 z-10 hover:scale-110"
+          onClick={(e) => {
+            e.stopPropagation();
+            prevSlide();
+          }}
+          className="absolute left-4 sm:left-6 top-[calc(50%+40px)] sm:top-[calc(50%+45px)] md:top-[calc(50%+50px)] lg:top-[calc(50%+60px)] -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 p-2 sm:p-2.5 rounded-full shadow-xl transition-all duration-200 z-30 hover:scale-110"
           aria-label="Image précédente"
         >
           <svg
@@ -79,8 +104,11 @@ const Header = () => {
 
         {/* Bouton suivant */}
         <button
-          onClick={nextSlide}
-          className="absolute right-4 sm:right-6 top-[calc(50%+40px)] sm:top-[calc(50%+45px)] md:top-[calc(50%+50px)] lg:top-[calc(50%+60px)] -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 p-2 sm:p-2.5 rounded-full shadow-xl transition-all duration-200 z-10 hover:scale-110"
+          onClick={(e) => {
+            e.stopPropagation();
+            nextSlide();
+          }}
+          className="absolute right-4 sm:right-6 top-[calc(50%+40px)] sm:top-[calc(50%+45px)] md:top-[calc(50%+50px)] lg:top-[calc(50%+60px)] -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 p-2 sm:p-2.5 rounded-full shadow-xl transition-all duration-200 z-30 hover:scale-110"
           aria-label="Image suivante"
         >
           <svg
@@ -100,11 +128,14 @@ const Header = () => {
         </button>
 
         {/* Indicateurs de slides */}
-        <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5 sm:gap-2.5 z-10">
+        <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5 sm:gap-2.5 z-30">
           {slides.map((_, index) => (
             <button
               key={index}
-              onClick={() => setCurrentSlide(index)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setCurrentSlide(index);
+              }}
               className={`h-2 sm:h-2.5 rounded-full transition-all duration-300 ${
                 index === currentSlide
                   ? 'bg-yellow-400 w-6 sm:w-10'
@@ -121,8 +152,14 @@ const Header = () => {
         <div className="container mx-auto px-2 sm:px-4 py-2 sm:py-3">
           <div className="flex items-center justify-between gap-2 sm:gap-4">
             
-            {/* Logo gauche - CARI 2026 */}
-            <div className="flex-shrink-0 w-16 max-[400px]:w-12 sm:w-20 md:w-24 lg:w-28">
+            {/* Logo gauche - CARI 2026 - Cliquable vers l'accueil */}
+            <div 
+              className="flex-shrink-0 w-16 max-[400px]:w-12 sm:w-20 md:w-24 lg:w-28 cursor-pointer z-30"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleHomeClick();
+              }}
+            >
               <img
                 src="/assets/logo1.png"
                 alt="Logo CARI 2026"
@@ -161,8 +198,14 @@ const Header = () => {
 
             {/* Logos droite - Université et ASOS sur la même ligne */}
             <div className="flex-shrink-0 flex flex-row items-center justify-end gap-1 sm:gap-2 md:gap-3">
-              {/* Logo Université */}
-              <div className="w-10 h-10 max-[400px]:w-8 max-[400px]:h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20">
+              {/* Logo Université - Cliquable vers site universitaire */}
+              <div 
+                className="w-10 h-10 max-[400px]:w-8 max-[400px]:h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 cursor-pointer z-30"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleUniversityClick();
+                }}
+              >
                 <img
                   src="/assets/logo2.png"
                   alt="Logo Université"
@@ -178,8 +221,14 @@ const Header = () => {
                 />
               </div>
               
-              {/* Logo ASOS */}
-              <div className="w-12 h-8 max-[400px]:w-10 max-[400px]:h-6 sm:w-16 sm:h-10 md:w-20 md:h-12 lg:w-24 lg:h-14">
+              {/* Logo ASOS - Cliquable vers site ASOS */}
+              <div 
+                className="w-12 h-8 max-[400px]:w-10 max-[400px]:h-6 sm:w-16 sm:h-10 md:w-20 md:h-12 lg:w-24 lg:h-14 cursor-pointer z-30"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleAsosClick();
+                }}
+              >
                 <img
                   src="/assets/logo3.png"
                   alt="Logo ASOS Africa"
