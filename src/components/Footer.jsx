@@ -1,15 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const menuItems = [
-    'HOME',
-    'CALLS',
-    'ORGANIZATION',
-    'PROGRAM',
-    'REGISTRATION',
-    'VENUE',
-    'SPONSORS',
-    'CONTACT',
+    { name: 'HOME', path: '/' },
+    { name: 'CALLS', path: '/calls' },
+    { name: 'ORGANIZATION', path: '/organization' },
+    { name: 'PROGRAM', path: '/program' },
+    { name: 'REGISTRATION', path: '/registration' },
+    { name: 'VENUE', path: '/venue' },
+    { name: 'SPONSORS', path: '/sponsors' },
+    { name: 'CONTACT', path: '/contact' },
   ];
 
   return (
@@ -28,12 +29,12 @@ const Footer = () => {
           <ul className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
             {menuItems.map((item, index) => (
               <li key={index}>
-                <a
-                  href={`#${item.toLowerCase()}`}
+                <Link
+                  to={item.path}
                   className="text-white hover:text-gray-300 font-medium text-sm md:text-base transition-colors"
                 >
-                  {item}
-                </a>
+                  {item.name}
+                </Link>
               </li>
             ))}
           </ul>
