@@ -13,7 +13,7 @@ const Sponsors = () => {
     {
       name: 'IFRI',
       logo: '/assets/ifri.png',
-      url: 'https://www.ifri.uac.bj/'
+      url: 'https://www.ifri-uac.bj/'
     },
     {
       name: 'IMSP',
@@ -43,12 +43,12 @@ const Sponsors = () => {
     {
       name: 'INRAE',
       logo: '/assets/inra.jpeg',
-      url: 'https://www.inrae.com/'
+      url: 'https://www.inrae.fr/'
     },
     {
       name: 'MATHNUM',
       logo: '/assets/math.jpeg',
-      url: 'https://www.mathNum.com/'
+      url: 'https://www.inrae.fr/departements/mathnum'
     },
   ];
 
