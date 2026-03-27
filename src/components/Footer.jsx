@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   const menuItems = [
     { name: 'HOME', path: '/' },
-    { name: 'CALLS', path: '/calls' },
-    { name: 'ORGANIZATION', path: '/organization' },
+    { name: 'CALLS', path: '/calls/papers' },
+    { name: 'ORGANIZATION', path: '/organization/local-committee' },
     { name: 'PROGRAM', path: '/program' },
     { name: 'REGISTRATION', path: '/registration' },
     { name: 'VENUE', path: '/venue' },

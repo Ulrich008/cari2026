@@ -28,7 +28,7 @@ const Navigation = () => {
     {
       title: 'ORGANIZATION',
       submenu: [
-        { title: 'LOCAL ORGANIZATION COMMITTEE', link: '/organization/local-committee' },
+        { title: 'ORGANIZATION COMMITTEE', link: '/organization/local-committee' },
         { title: 'TECHNICAL PROGRAM COMMITTEE', link: '/organization/tpc' },
         { title: 'CARI STEERING COMMITTEE', link: '/organization/cari-steering' },
       ],

@@ -61,15 +61,21 @@ const LocalCommittee = () => {
   ];
 
   const organizationChairs = [
+    
     {
-      name: 'Eugène C. EZIN',
-      title: 'IFRI/Université d\'Abomey-Calavi - UAC, Bénin',
-      image: '/assets/dir.webp',
+      name: 'Gaston EDAH',
+      title: 'D. IFRI/Université d\'Abomey-Calavi - UAC, Bénin',
+      image: '/assets/Edah.jpg',
     },
     {
       name: 'Carlos OGOUYADJOU',
       title: 'IMSP/Université d\'Abomey-Calavi - UAC, Bénin',
       image: '/assets/c1.jfif',
+    },
+    {
+      name: 'Eugène C. EZIN',
+      title: 'IFRI/Université d\'Abomey-Calavi - UAC, Bénin',
+      image: '/assets/dir.webp',
     },
   ];
 
@@ -103,6 +109,11 @@ const LocalCommittee = () => {
       name: 'Gwenaëlle LANNEC',
       title: 'IRISA/Université de Rennes, France',
       image: '/assets/Gene.jfif',
+    },
+    {
+      name: 'Baloicha EZINVI',
+      title: 'ICMPA UNESCO CHAIR/Université d\'Abomey-Calavi - UAC, Bénin',
+      image: '/assets/Ezinvi.webp',
     },
   ];
 
@@ -147,7 +158,7 @@ const LocalCommittee = () => {
       <div className="max-w-7xl mx-auto p-4 md:p-6 bg-gray-50 min-h-screen">
         {/* Titre principal */}
         <h1 className="text-3xl md:text-4xl font-bold text-red-600 mb-6 uppercase">
-          LOCAL ORGANIZATION COMMITTEE
+           ORGANIZATION COMMITTEE
         </h1>
 
         {/* --- HONORARY CHAIRS (accordéon) --- */}
@@ -326,7 +337,7 @@ const LocalCommittee = () => {
             className="w-full flex items-center justify-between bg-white border-b-4 border-green-600 px-4 py-3 hover:bg-gray-50 transition-colors"
           >
             <h2 className="text-lg md:text-xl font-bold text-green-600 uppercase">
-              ORGANIZATION COMMITTEE
+              LOCAL ORGANIZATION COMMITTEE
             </h2>
             <svg
               className={`w-6 h-6 text-green-600 transition-transform duration-300 ${
@@ -419,7 +430,7 @@ const LocalCommittee = () => {
             className="w-full flex items-center justify-between bg-white border-b-4 border-green-600 px-4 py-3 hover:bg-gray-50 transition-colors"
           >
             <h2 className="text-lg md:text-xl font-bold text-green-600 uppercase">
-              KEYNOTES AND RELATIONSHIPS CHAIR
+              KEYNOTE AND RELATIONSHIP CHAIR
             </h2>
             <svg
               className={`w-6 h-6 text-green-600 transition-transform duration-300 ${
@@ -480,7 +491,7 @@ const LocalCommittee = () => {
             className="w-full flex items-center justify-between bg-white border-b-4 border-green-600 px-4 py-3 hover:bg-gray-50 transition-colors"
           >
             <h2 className="text-lg md:text-xl font-bold text-green-600 uppercase">
-              COMMUNICATIONS CHAIR
+              COMMUNICATION CHAIR
             </h2>
             <svg
               className={`w-6 h-6 text-green-600 transition-transform duration-300 ${

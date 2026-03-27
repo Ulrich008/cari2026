@@ -50,6 +50,11 @@ const Sponsors = () => {
       logo: '/assets/math.jpeg',
       url: 'https://www.inrae.fr/departements/mathnum'
     },
+     {
+      name: 'CIPMA',
+      logo: '/assets/cimpa.png',
+      url: 'https://www.icmpa.net/cipma/'
+    },
   ];
 
   const sponsors = [
