@@ -26,12 +26,12 @@ const LocalCommittee = () => {
   const honoraryChairs = [
     {
       name: 'Eléonore YAYI LADEKAN',
-      title: 'Ministre de l\'Enseignement Supérieur et de la Recherche Scientifique (MESRS) du Bénin',
+      title: 'Ancien Ministre de l\'Enseignement Supérieur et de la Recherche Scientifique (MESRS) du Bénin',
       image: '/assets/h1.webp',
     },
     {
       name: 'Norbert HOUNKONNOU',
-      title: 'Président du Réseau des Académies africaines des Sciences et Ancien Président de l\'Académie nationale des Sciences, Arts et Lettres du Bénin (ANSALB)',
+      title: 'Ancien Président du Réseau des Académies africaines des Sciences et Ancien Président de l\'Académie nationale des Sciences, Arts et Lettres du Bénin (ANSALB)',
       image: '/assets/h3.jfif',
     },
     {
