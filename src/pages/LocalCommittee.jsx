@@ -64,7 +64,7 @@ const LocalCommittee = () => {
     
     {
       name: 'Gaston EDAH',
-      title: 'D. IFRI/Université d\'Abomey-Calavi - UAC, Bénin',
+      title: 'IFRI/Université d\'Abomey-Calavi - UAC, Bénin',
       image: '/assets/Edah.jpg',
     },
     {
