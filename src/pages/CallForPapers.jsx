@@ -265,11 +265,12 @@ const CallForPapers = () => {
                   <span className="font-bold">Abstract submission (optional):</span> <span className="text-red-600 font-bold">23 March, 2026</span>
                 </p>
                 <p>
-              <span className="mr-2">-</span>
-              <span className="font-bold">Paper submission:</span> 
-              <span className="line-through mr-2">30 March, 2026  ,</span>
-              <span className="text-red-600  font-bold">10 April, 2026</span>
-            </p>
+                <span className="mr-2">-</span>
+                <span className="font-bold">Paper submission:</span> 
+                <span className="line-through mr-2">30 March, 2026  </span> --> 
+                <span> EXTENDED DEADLINE : </span>
+                <span className="text-red-600 font-bold">10 April, 2026</span>
+              </p>
                 <p>
                   <span className="mr-2">-</span>
                   <span className="font-bold">Notification to authors:</span> <span className="text-red-600 font-bold">22 June, 2026</span>
