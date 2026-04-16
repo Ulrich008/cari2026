@@ -26,7 +26,7 @@ const LocalCommittee = () => {
   const honoraryChairs = [
     {
       name: 'Eléonore YAYI LADEKAN',
-      title: 'Ancien Ministre de l\'Enseignement Supérieur et de la Recherche Scientifique (MESRS) du Bénin',
+      title: 'Ancienne Ministre de l\'Enseignement Supérieur et de la Recherche Scientifique (MESRS) du Bénin',
       image: '/assets/h1.webp',
     },
     {

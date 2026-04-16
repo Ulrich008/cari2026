@@ -7,6 +7,7 @@ import CallForPapers from './pages/CallForPapers';
 import UnderConstruction from './pages/UnderConstruction';
 import Proceedings from './pages/Proceedings';
 import Contact from './pages/Contact';
+import Registration from './pages/Registration';
 import Sponsors from './pages/Sponsors';
 import Venue from './pages/Venue';
 import PhotoGallery from './pages/PhotoGallery';
@@ -50,7 +51,7 @@ function App() {
           <Route path="/program/satellite-events" element={<UnderConstruction />} />
 
           {/* Autres pages sans sous-menus */}
-          <Route path="/registration" element={<UnderConstruction />} />
+          <Route path="/registration" element={<Registration />} />
           <Route path="/venue" element={<Venue />} />
           <Route path="/sponsors" element={<Sponsors/>} />
           <Route path="/contact" element={<Contact />} />
