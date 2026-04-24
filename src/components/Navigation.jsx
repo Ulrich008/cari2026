@@ -22,7 +22,7 @@ const Navigation = () => {
       title: 'CALLS',
       submenu: [
         { title: 'CALL FOR PAPERS', link: '/calls/papers' },
-        { title: 'CALL FOR PAPERS FOR CARI WORKSHOPS', link: '/calls/cari-workshops' },
+        { title: 'CARI WORKSHOPS', link: '/calls/cari-workshops' },
       ],
     },
     {
