@@ -83,7 +83,7 @@ const Workshops = () => {
       <div className="min-h-screen bg-white py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           
-          <h1 className="text-4xl md:text-5xl font-bold text-red-600 mb-6 uppercase">
+          <h1 className="text-4xl md:text-4xl font-bold text-red-600 mb-6 uppercase">
             {workshopsData.title}
           </h1>
 
