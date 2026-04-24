@@ -16,6 +16,7 @@ const Registration = () => {
     }));
   };
 
+  // Tableau mis à jour selon l'image
   const registrationFees = [
     {
       category: 'Africans Students live in Africa',
@@ -30,7 +31,7 @@ const Registration = () => {
       onsite: '250 €'
     },
     {
-      category: 'Researchers affiliated lice in Africa',
+      category: 'Researchers affiliated living in Africa',
       early: '150 €',
       late: '200 €',
       onsite: '250 €'
@@ -51,7 +52,7 @@ const Registration = () => {
       category: 'Gala Dinner fees for Researchers',
       early: '20 €',
       late: '20 €',
-      onsite: '10 €'
+      onsite: '10 €'  // Note: 10€ sur site selon l'image
     },
   ];
 
@@ -68,13 +69,13 @@ const Registration = () => {
             REGISTRATION
           </h1>
 
-          {/* Paragraphe introductif */}
+          {/* Paragraphe introductif - mis à jour */}
           <div className="mb-8 space-y-4 text-gray-900 leading-relaxed text-justify">
             <p>
-              Accepted Authors who wish to upload the Camera-ready version are advised to read the Camera-ready procedure carefully before proceeding with the Registration. Please find the Camera-ready Submission Instructions here. <br /> Link:{' '}
+              Authors who wish to upload the Camera-ready version are advised to read the Camera-ready procedure carefully before proceeding with the Registration. Please find the Camera-ready Submission Instructions here.{' '}
               <a 
                 href="#" 
-                className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 transition-colors font-semibold"
+                className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 transition-colors font-semibold inline-block"
               >
                 CAMERA-READY SUBMISSION
               </a>
@@ -105,7 +106,10 @@ const Registration = () => {
             <div className={`overflow-hidden transition-all duration-300 ${openSections.information ? 'max-h-[3000px] opacity-100' : 'max-h-0 opacity-0'}`}>
               <div className="bg-gray-100 p-6">
                 <div className="space-y-6 text-gray-900 leading-relaxed text-justify">
-                  <p className="font-semibold">All fees will be collected in Euros € or Francs CFA.</p>
+                  
+                  {/* Moyens de paiement - Ajouté depuis l'image */}
+                  <p className="font-semibold">All fees will be collected in Euros € or CFA (Benin Republic local currency).</p>
+                  <p>Payment can be made by credit card (Visa, Mastercard, Apple Pay), PayPal, bank transfer, cash (on site), mobile money (MTN, MOOV, Celtis, etc.)</p>
 
                   {/* Tableau des frais d'inscription */}
                   <div className="mt-6">
@@ -117,7 +121,7 @@ const Registration = () => {
                       <table className="w-full border-collapse">
                         <thead>
                           <tr className="bg-white border-b-2 border-gray-300">
-                            <th className="border border-gray-300 px-4 py-3 text-left font-bold">MAIN CONFERENCE</th>
+                            <th className="border border-gray-300 px-4 py-3 text-left font-bold">AFFILIATES</th>
                             <th className="border border-gray-300 px-4 py-3 text-center font-semibold">Early registration (15 July)</th>
                             <th className="border border-gray-300 px-4 py-3 text-center font-semibold">Late Registration</th>
                             <th className="border border-gray-300 px-4 py-3 text-center font-semibold">On-site Registration</th>
@@ -136,9 +140,20 @@ const Registration = () => {
                       </table>
                     </div>
 
+                    {/* Workshops et Taux de change */}
+                    <div className="mt-4 space-y-2">
+                      <p className="font-bold text-lg">WORKSHOPS and TUTORIALS : free for all participants</p>
+                      <p className="text-sm italic">Note that: 1 € = 655,96 Francs CFA in addition to the exchange fees.</p>
+                    </div>
+                    
+                    {/* Lien d'inscription sécurisé */}
                     <div className="mt-4 text-center">
-                      <p className="font-bold text-lg">WORKSHOPS and TUTORIALS</p>
-                      <p className="font-semibold">Free for all participants</p>
+                      <a 
+                        href="#" 
+                        className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors font-semibold inline-block"
+                      >
+                        PROCEED WITH REGISTRATION
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -146,7 +161,7 @@ const Registration = () => {
             </div>
           </section>
 
-          {/* GENERAL INFORMATION Section */}
+          {/* GENERAL INFORMATION Section - Mise à jour complète */}
           <section className="mb-4">
             <button
               onClick={() => toggleSection('general')}
@@ -171,19 +186,21 @@ const Registration = () => {
               <div className="bg-gray-100 p-6">
                 <div className="space-y-6 text-gray-900 leading-relaxed text-justify">
                   
+                  {/* Registration Includes - Mis à jour */}
                   <div>
-                    <p className="font-bold mb-2">In Person Main Conference Registration Fees Include:</p>
+                    <p className="font-bold mb-2">Registration Includes :</p>
                     <ul className="list-disc ml-6 space-y-1">
-                      <li>
-                        Attendance to all scientific sessions on{' '}
-                        <span className="text-red-600 font-semibold">21–22–23–24 October 2024</span>.
-                      </li>
-                      <li>Conference materials</li>
-                      <li>Coffee breaks and lunches to be served during the conference scientific program</li>
-                      <li>Gala Dinner will be pay expense and the cost is indicated in the table above.</li>
+                      <li>Attendance to all scientific sessions on <span className="text-red-600 font-semibold">21–22–23–24 October 2026</span>.</li>
+                      <li>Access to all Keynotes; Panels; Demonstration; Papers; Posters; Plenary/Technical Sessions;</li>
+                      <li>Conference materials;</li>
+                      <li>All participants can attend WORKSHOPS and TUTORIALS for free;</li>
+                      <li>Welcome Reception; Lunch; AM/PM Breaks; (1) Ticket to Conference Banquet/Awards Ceremony;</li>
+                      <li>Gala dinner participants must pay the corresponding fee indicated in the table above. Early bird;</li>
                     </ul>
+                    <p className="mt-2 text-sm italic">The date of payment is decisive: the early bird fees will only be applied if the payment has been transferred before the deadline.</p>
                   </div>
 
+                  {/* Important notes - Version corrigée */}
                   <div>
                     <p className="font-bold mb-2">Important notes</p>
                     <p className="mb-4">
@@ -191,54 +208,58 @@ const Registration = () => {
                       <a href="mailto:caribj2026@gmail.com" className="text-blue-600 hover:text-blue-800 underline">
                         caribj2026@gmail.com
                       </a>
-                      . Only participants who received their registration will be included in the program.
+                      . Only participants who complete their registration will be included in the program.
                     </p>
 
                     <p className="mb-4">
                       The date of payment is decisive for the registration fee. Even if the registration form is received before the early bird deadline, it will not be considered as early registration if the payment has not been received before the deadline.
                     </p>
+                  </div>
 
-                    <p className="mb-4">
-                      You will receive your registration confirmation in 72 hours after you make your payment (except weekends). Please note that it may take around 1 week for your confirmation if the payment is made via bank transfer.
-                    </p>
-
-                    <p className="mb-4">
-                      To be eligible for the student rates, students (bachelor, master or doctoral level) are required to produce up-to-date documentary evidence of their status by the time of the manuscript submission. Without this documentation, full delegate fees will be applied. For the avoidance of any doubt, post-doctoral fellows should pay full delegate fees. Students should send the necessary document via e-mail to{' '}
+                  {/* Reduced fees - Nouvelle section */}
+                  <div>
+                    <p className="font-bold mb-2">Reduced fees</p>
+                    <p>
+                      To be eligible for the student rates, students (bachelor, master or doctoral level) are required to produce up-to-date documentary evidence of their status via e-mail to{' '}
                       <a href="mailto:caribj2026@gmail.com" className="text-blue-600 hover:text-blue-800 underline">
                         caribj2026@gmail.com
                       </a>
-                      .
+                      . Without this documentation, full delegate fees will be applied. Post-doctoral fellows should pay full delegate fees. To be eligible for reduced fees, African students.
                     </p>
                   </div>
 
+                  {/* Registration confirmation - Nouvelle section */}
                   <div>
-                    <p className="font-bold mb-2">Cancellation Policy - Registration:</p>
+                    <p className="font-bold mb-2">Registration confirmation</p>
+                    <p>
+                      You will receive your registration confirmation in 72 hours after you make your payment (except weekends). Please note that it may take around 1 week to get your confirmation if the payment is made via bank transfer. Please contact the registration secretariat at{' '}
+                      <a href="mailto:caribj2026@gmail.com" className="text-blue-600 hover:text-blue-800 underline">
+                        caribj2026@gmail.com
+                      </a>{' '}
+                      if you do not receive the confirmation.
+                    </p>
+                  </div>
+
+                  {/* Cancellation Policy - Mise à jour avec les dates de l'image */}
+                  <div>
+                    <p className="font-bold mb-2">Cancellation Policy:</p>
                     <ul className="list-disc ml-6 space-y-2">
-                      <li>Refunds and invoice amendments are subject to a processing fee.</li>
-                      <li>
-                        Requests for registration cancellation must be received in writing by the CARI 2026 Registration via e-mail to{' '}
-                        <a href="mailto:caribj2026@gmail.com" className="text-blue-600 hover:text-blue-800 underline">
-                          caribj2026@gmail.com
-                        </a>
-                      </li>
-                      <li>
-                        Cancellations received before or on August 25, 2026 – full refund less EUR 25 administration fee. Membership fees are non-refundable.
-                      </li>
-                      <li>Cancellations received on after August 26, 2026 – no refund</li>
-                      <li>
-                        Please note that registration refunds will be processed within 30 days after the end of CARI 2026, bank charges will be deducted from the refund.
-                      </li>
-                      <li>
-                        Register at our secure online payment site. Lien:{' '}
-                        <a 
-                          href="#" 
-                          className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 transition-colors font-semibold"
-                        >
-                          Proceed with registration
-                        </a>
-                      </li>
+                      <li>Requests for registration cancellation must be received by e-mail to <a href="mailto:caribj2026@gmail.com" className="text-blue-600 hover:text-blue-800 underline">caribj2026@gmail.com</a></li>
+                      <li>Refunds are subject to a processing fee.</li>
+                      <li>Cancellations received before or on September 10, 2026 – full refund less EUR 25 administration fee.</li>
+                      <li>Cancellations received on or after September 10, 2026 – no refund</li>
+                      <li>Please note that registration refunds will be processed within 30 days after the end of CARI 2026, bank charges will be deducted from the refund.</li>
                     </ul>
                   </div>
+
+                  {/* International Attendees / Visa - NOUVEAU selon l'image */}
+                  <div>
+                    <p className="font-bold mb-2">International Attendees:</p>
+                    <p>
+                      If you have not received your visa by September 10, 2026, you should consider cancelling your registration because there will be no refunds for attendees who do not get their visa. You can always register again later or onsite if you get your visa. CARI organizers cannot intervene on your behalf to help you get your visa. Remember: You can print a letter confirming registration to use for VISA applications.
+                    </p>
+                  </div>
+
                 </div>
               </div>
             </div>
