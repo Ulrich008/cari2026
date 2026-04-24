@@ -65,7 +65,7 @@ const Registration = () => {
         <div className="max-w-5xl mx-auto">
           
           {/* Titre principal */}
-          <h1 className="text-4xl md:text-5xl font-bold text-red-600 mb-6 uppercase">
+          <h1 className="text-4xl md:text-4xl font-bold text-red-600 mb-6 uppercase">
             REGISTRATION
           </h1>
 
