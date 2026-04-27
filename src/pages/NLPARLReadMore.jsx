@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 
 const nlpArlData = {
   title: "NLP FOR AFRICAN AND LOW-RESOURCE LANGUAGES",
-  dateLocation: "22 October 2026, Cotonou, Benin",
+  dateLocation: "21 October 2026, Cotonou, Benin",
   sections: [
     {
       title: "SCOPE",

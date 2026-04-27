@@ -24,14 +24,14 @@ const workshopsData = {
       title: "Workshop on Natural Language processing for African and low-resource languages (NLP-ARL'2026)",
       content: "Natural language processing has made significant progress driven by advances in artificial intelligence and the advent of Large Language Models. However, these improvements still concern dominant languages such as English and French. For low-resourced languages, including many languages and dialects of Africa, this lack of usable data limits model performance, increases the risk of overfitting, and complicates their integration into operational tools. NLP-ARL Workshop aims to explore the current stakes and future research areas to address the challenges posed by the under-represented languages.",
       hasReadMore: true,
-       readMoreLink: "/calls/cari-workshops/nlparl-read-more"  // ✅ Ajout du lien
+      readMoreLink: "/calls/cari-workshops/nlparl-read-more"
     },
     {
       id: "cybsec",
-      title: "Workshop on Cybersecurity in Africa (CybSecAfrica'2026)",
+      title: "Cybersecurity in Africa Workshop : Towards a secure and reliable digital",
       content: "Cybersecurity is a universal challenge that requires training, research, and development. In Africa, the community of researchers in this field and their research topics are scattered and poorly identified. This workshop is a first step toward bringing this community together and making proposals for a secure and reliable digital future. The one-day program will combine presentations by guest speakers with group discussions that reflect the participants' areas of interest. Participation is open to all cybersecurity professionals, academics, researchers and students. We welcome all innovative contributions on these topics, regardless of the field of application (health, agriculture, social sciences, digital humanities, etc.). Participation is open to all academics, researchers, students and professionals.",
-      hasReadMore: false,
-      readMoreLink: null
+      hasReadMore: true,
+      readMoreLink: "/calls/cari-workshops/cybsec-read-more"
     },
     {
       id: "intercoop",

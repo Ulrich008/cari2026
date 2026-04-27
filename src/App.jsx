@@ -14,7 +14,8 @@ import PhotoGallery from './pages/PhotoGallery';
 import Workshops from './pages/Workshops';
 import DAAfricaReadMore from './pages/DAAfricaReadMore';
 import InterCoopReadMore from './pages/InterCoopReadMore';
-import NLPARLReadMore from './pages/NLPARLReadMore';  // NOUVEAU
+import NLPARLReadMore from './pages/NLPARLReadMore';
+import CybSecAfrica from './pages/CybSecAfrica';
 
 const Layout = () => (
   <>
@@ -39,6 +40,7 @@ function App() {
           {/* Routes pour les pages READ MORE des workshops */}
           <Route path="/calls/cari-workshops/daafrica-read-more" element={<DAAfricaReadMore />} />
           <Route path="/calls/cari-workshops/nlparl-read-more" element={<NLPARLReadMore />} />
+          <Route path="/calls/cari-workshops/cybsec-read-more" element={<CybSecAfrica/>} />
           <Route path="/calls/cari-workshops/intercoop-read-more" element={<InterCoopReadMore />} />
 
           {/* Routes pour ORGANIZATION */}
