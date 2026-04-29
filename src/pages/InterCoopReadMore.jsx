@@ -75,10 +75,6 @@ const intercoopData = {
       type: "chairs"
     }
   ],
-  navigation: {
-    links: ["Home", "Calls", "Organization", "Program", "Registration", "Venue", "Sponsors", "Contact"]
-  },
-  copyright: "© Copyright CARI 2026"
 };
 
 const InterCoopReadMore = () => {

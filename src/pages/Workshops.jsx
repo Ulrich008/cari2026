@@ -47,10 +47,6 @@ const workshopsData = {
     { id: "cybsec", label: "CybSecAfrica'2026" },
     { id: "intercoop", label: "InterCoop'2026" }
   ],
-  navigation: {
-    links: ["Home", "Calls", "Organization", "Program", "Registration", "Venue", "Sponsors", "Contact"]
-  },
-  copyright: "© Copyright CARI 2026"
 };
 
 const Workshops = () => {

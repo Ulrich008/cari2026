@@ -36,7 +36,7 @@ const nlpArlData = {
         "Detailed abstracts must be in English and follow the LNCS format (template), with a limit of 6 pages (including the title page, figures, references and optional appendix). Submissions must be sent in PDF format via EasyChair :",
         "Each accepted submission must have at least one author registered for the workshop."
       ],
-      submissionLink: "https://easychair.org/conferences/?conf=nlparl2026",
+      submissionLink: "https://easychair.org/my/conference?conf=nlparlworkshop2026",
       linkLabel: "submission link"
     },
     {
@@ -71,10 +71,6 @@ const nlpArlData = {
       ]
     }
   ],
-  navigation: {
-    links: ["Home", "Calls", "Organization", "Program", "Registration", "Venue", "Sponsors", "Contact"]
-  },
-  copyright: "© Copyright CARI 2026"
 };
 
 const NLPARLReadMore = () => {
