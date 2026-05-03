@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // Ajout de l'import Link
 import Header from '../components/Header';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
@@ -52,7 +53,7 @@ const Registration = () => {
       category: 'Gala Dinner fees for Researchers',
       early: '20 €',
       late: '20 €',
-      onsite: '10 €'  // Note: 10€ sur site selon l'image
+      onsite: '10 €'
     },
   ];
 
@@ -65,11 +66,11 @@ const Registration = () => {
         <div className="max-w-5xl mx-auto">
           
           {/* Titre principal */}
-          <h1 className="text-4xl md:text-4xl font-bold text-red-600 mb-6 uppercase">
+          <h1 className="text-4xl md:text-5xl font-bold text-red-600 mb-6 uppercase">
             REGISTRATION
           </h1>
 
-          {/* Paragraphe introductif - mis à jour */}
+          {/* Paragraphe introductif */}
           <div className="mb-8 space-y-4 text-gray-900 leading-relaxed text-justify">
             <p>
               Authors who wish to upload the Camera-ready version are advised to read the Camera-ready procedure carefully before proceeding with the Registration. Please find the Camera-ready Submission Instructions here.{' '}
@@ -107,11 +108,9 @@ const Registration = () => {
               <div className="bg-gray-100 p-6">
                 <div className="space-y-6 text-gray-900 leading-relaxed text-justify">
                   
-                  {/* Moyens de paiement - Ajouté depuis l'image */}
                   <p className="font-semibold">All fees will be collected in Euros € or CFA (Benin Republic local currency).</p>
                   <p>Payment can be made by credit card (Visa, Mastercard, Apple Pay), PayPal, bank transfer, cash (on site), mobile money (MTN, MOOV, Celtis, etc.)</p>
 
-                  {/* Tableau des frais d'inscription */}
                   <div className="mt-6">
                     <h3 className="font-bold text-lg mb-4 bg-green-600 text-white px-4 py-2 text-center">
                       REGISTRATION FEES
@@ -140,20 +139,19 @@ const Registration = () => {
                       </table>
                     </div>
 
-                    {/* Workshops et Taux de change */}
                     <div className="mt-4 space-y-2">
                       <p className="font-bold text-lg">WORKSHOPS and TUTORIALS : free for all participants</p>
                       <p className="text-sm italic">Note that: 1 € = 655,96 Francs CFA in addition to the exchange fees.</p>
                     </div>
                     
-                    {/* Lien d'inscription sécurisé */}
+                    {/* Lien d'inscription sécurisé avec Link de react-router-dom */}
                     <div className="mt-4 text-center">
-                      <a 
-                        href="#" 
+                      <Link 
+                        to="/registration/portal" 
                         className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors font-semibold inline-block"
                       >
                         PROCEED WITH REGISTRATION
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -161,7 +159,7 @@ const Registration = () => {
             </div>
           </section>
 
-          {/* GENERAL INFORMATION Section - Mise à jour complète */}
+          {/* GENERAL INFORMATION Section */}
           <section className="mb-4">
             <button
               onClick={() => toggleSection('general')}
@@ -186,7 +184,6 @@ const Registration = () => {
               <div className="bg-gray-100 p-6">
                 <div className="space-y-6 text-gray-900 leading-relaxed text-justify">
                   
-                  {/* Registration Includes - Mis à jour */}
                   <div>
                     <p className="font-bold mb-2">Registration Includes :</p>
                     <ul className="list-disc ml-6 space-y-1">
@@ -200,7 +197,6 @@ const Registration = () => {
                     <p className="mt-2 text-sm italic">The date of payment is decisive: the early bird fees will only be applied if the payment has been transferred before the deadline.</p>
                   </div>
 
-                  {/* Important notes - Version corrigée */}
                   <div>
                     <p className="font-bold mb-2">Important notes</p>
                     <p className="mb-4">
@@ -216,7 +212,6 @@ const Registration = () => {
                     </p>
                   </div>
 
-                  {/* Reduced fees - Nouvelle section */}
                   <div>
                     <p className="font-bold mb-2">Reduced fees</p>
                     <p>
@@ -228,7 +223,6 @@ const Registration = () => {
                     </p>
                   </div>
 
-                  {/* Registration confirmation - Nouvelle section */}
                   <div>
                     <p className="font-bold mb-2">Registration confirmation</p>
                     <p>
@@ -240,7 +234,6 @@ const Registration = () => {
                     </p>
                   </div>
 
-                  {/* Cancellation Policy - Mise à jour avec les dates de l'image */}
                   <div>
                     <p className="font-bold mb-2">Cancellation Policy:</p>
                     <ul className="list-disc ml-6 space-y-2">
@@ -252,7 +245,6 @@ const Registration = () => {
                     </ul>
                   </div>
 
-                  {/* International Attendees / Visa - NOUVEAU selon l'image */}
                   <div>
                     <p className="font-bold mb-2">International Attendees:</p>
                     <p>
@@ -264,10 +256,8 @@ const Registration = () => {
               </div>
             </div>
           </section>
-
         </div>
       </div>
-
       <Footer />
     </>
   );

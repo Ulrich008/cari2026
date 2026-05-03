@@ -15,6 +15,11 @@ import Workshops from './pages/Workshops';
 import DAAfricaReadMore from './pages/DAAfricaReadMore';
 import InterCoopReadMore from './pages/InterCoopReadMore';
 import NLPARLReadMore from './pages/NLPARLReadMore';
+import RegistrationPortal from './pages/RegistrationPortal';
+import RegistrationMyInfo from './pages/RegistrationMyInfo';
+import RegistrationPayment from './pages/RegistrationPayment';
+import RegistrationInvitation from './pages/RegistrationInvitation';
+import RegistrationCertificate from './pages/RegistrationCertificate';
 import CybSecAfrica from './pages/CybSecAfrica';
 
 const Layout = () => (
@@ -59,6 +64,11 @@ function App() {
 
           {/* Autres pages */}
           <Route path="/registration" element={<Registration />} />
+          <Route path="/registration/portal" element={<RegistrationPortal />} />
+          <Route path="/registration/portal/myinfo" element={<RegistrationMyInfo />} />
+          <Route path="/registration/portal/payment" element={<RegistrationPayment />} />
+          <Route path="/registration/portal/invitation" element={<RegistrationInvitation />} />
+          <Route path="/registration/portal/certificate" element={<RegistrationCertificate/>} />
           <Route path="/venue" element={<Venue />} />
           <Route path="/sponsors" element={<Sponsors />} />
           <Route path="/contact" element={<Contact />} />
