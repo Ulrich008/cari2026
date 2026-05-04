@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 import HomePage from './pages/HomePage';
 import OrganizationCommittee from './pages/LocalCommittee';
 import TechnicalProgramCommittee from './pages/TechnicalProgramCommittee';
@@ -63,6 +65,8 @@ function App() {
           <Route path="/program/satellite-events" element={<UnderConstruction />} />
 
           {/* Autres pages */}
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/registration/portal" element={<RegistrationPortal />} />
           <Route path="/registration/portal/myinfo" element={<RegistrationMyInfo />} />

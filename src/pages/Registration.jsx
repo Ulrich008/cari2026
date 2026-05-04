@@ -147,7 +147,7 @@ const Registration = () => {
                     {/* Lien d'inscription sécurisé avec Link de react-router-dom */}
                     <div className="mt-4 text-center">
                       <Link 
-                        to="/registration/portal" 
+                        to="/signup" 
                         className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors font-semibold inline-block"
                       >
                         PROCEED WITH REGISTRATION
