@@ -21,21 +21,20 @@ const Venue = () => {
   };
 
   const hotelsConference = [
-    { name: 'Paradisia Hotel', stars: 4, area: 'Godomey' },
-    { name: 'Hôtel Les Arcades', stars: 3, area: 'Abomey-Calavi' },
-    { name: 'Assouka Eco-Village', stars: 2, area: 'Lake Nokoué' },
-    { name: 'IITA Guest House', stars: 2, area: 'IITA Campus' },
-    { name: 'Residence Nenuphar', stars: 2, area: 'Abomey-Calavi' },
+    { name: 'Paradisia Hotel', stars: 4, area: 'Godomey', url: 'https://www.agoda.com/' },
+    { name: 'Hôtel Les Arcades', stars: 3, area: 'Abomey-Calavi', url: 'ttps://www.booking.com' },
+    { name: 'Assouka Eco-Village', stars: 2, area: 'Lake Nokoué', url: 'https://www.booking.com/' },
+    { name: 'Residence Nenuphar', stars: 2, area: 'Abomey-Calavi', url: 'https://www.online-reservations.com/' },
   ];
 
   const hotelsCotonou = [
-    { name: 'Golden Tulip Le Diplomate', stars: 4, area: 'Marina' },
-    { name: 'Novotel Orisha', stars: 4, area: 'Marina' },
-    { name: 'Hotel du Lac', stars: 4, area: 'Cotonou' },
-    { name: 'Ibis Cotonou', stars: 3, area: 'Marina' },
-    { name: 'Maison Rouge', stars: 4, area: 'Marina' },
-    { name: 'Nobila Airport Hotel', stars: 4, area: 'Airport' },
-    { name: 'Sofitel Marina Hotel & Spa', stars: 5, area: 'Marina' },
+    { name: 'Golden Tulip Le Diplomate', stars: 4, area: 'Marina', url: 'https://diplomate-cotonou.goldentulip.com/' },
+    { name: 'Novotel Orisha', stars: 4, area: 'Marina', url: 'https://novotel-orisha-cotonou.h-rez.com/' },
+    { name: 'Hotel du Lac', stars: 4, area: 'Cotonou', url: 'https://tamarinhotel.com/' },
+    { name: 'Ibis Cotonou', stars: 3, area: 'Marina', url: 'https://all.accor.com/' },
+    { name: 'Maison Rouge', stars: 4, area: 'Marina', url: 'https://www.zenhotels.com/' },
+    { name: 'Nobila Airport Hotel', stars: 4, area: 'Airport', url: 'https://www.booking.com/' },
+    { name: 'Sofitel Marina Hotel & Spa', stars: 5, area: 'Marina', url: 'https://sofitel.accor.com/fr.html' },
   ];
 
   const renderStars = (count) => {
@@ -259,6 +258,7 @@ const Venue = () => {
                             <th className="border border-green-600 px-4 py-2 text-left">Hotel</th>
                             <th className="border border-green-600 px-4 py-2 text-center">Category</th>
                             <th className="border border-green-600 px-4 py-2 text-left">Area</th>
+                            <th className="border border-green-600 px-4 py-2 text-center">Link</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -269,6 +269,16 @@ const Venue = () => {
                                 {renderStars(hotel.stars)}
                               </td>
                               <td className="border border-gray-300 px-4 py-2">{hotel.area}</td>
+                              <td className="border border-gray-300 px-4 py-2 text-center">
+                                <a 
+                                  href={hotel.url} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer"
+                                  className="text-blue-600 hover:text-blue-800 underline"
+                                >
+                                  Visit Site
+                                </a>
+                              </td>
                             </tr>
                           ))}
                         </tbody>
@@ -288,6 +298,7 @@ const Venue = () => {
                             <th className="border border-green-600 px-4 py-2 text-left">Hotel</th>
                             <th className="border border-green-600 px-4 py-2 text-center">Category</th>
                             <th className="border border-green-600 px-4 py-2 text-left">Area</th>
+                            <th className="border border-green-600 px-4 py-2 text-center">Link</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -298,6 +309,16 @@ const Venue = () => {
                                 {renderStars(hotel.stars)}
                               </td>
                               <td className="border border-gray-300 px-4 py-2">{hotel.area}</td>
+                              <td className="border border-gray-300 px-4 py-2 text-center">
+                                <a 
+                                  href={hotel.url} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer"
+                                  className="text-blue-600 hover:text-blue-800 underline"
+                                >
+                                  Visit Site
+                                </a>
+                              </td>
                             </tr>
                           ))}
                         </tbody>

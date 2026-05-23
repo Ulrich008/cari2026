@@ -50,10 +50,25 @@ const Sponsors = () => {
       logo: '/assets/math.jpeg',
       url: 'https://www.inrae.fr/departements/mathnum'
     },
-    {
+     {
       name: 'CIPMA',
       logo: '/assets/cimpa.png',
       url: 'https://www.icmpa.net/cipma/'
+    },
+    {
+      name: 'CNRS',
+      logo: '/assets/cnrs.png',
+      url: 'https://www.cnrs.fr/fr'
+    },
+     {
+      name: 'IRISA',
+      logo: '/assets/irisa.png',
+      url: 'https://www.irisa.fr/'
+    },
+     {
+      name: 'RENNES',
+      logo: '/assets/rennes.png',
+      url: 'https://www.univ-rennes.fr/'
     },
   ];
 
