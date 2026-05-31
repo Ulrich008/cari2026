@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import publicApi from '../api/publicApi';
 
 const Sponsors = () => {
+  const [apiSponsors, setApiSponsors] = useState(null);
+
+  useEffect(() => {
+    publicApi.getSponsors()
+      .then((res) => {
+        if (res?.data?.length > 0) {
+          setApiSponsors(res.data);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  // Données statiques — utilisées comme fallback si la DB est vide
   const partners = [
     {
       name: "Université d'Abomey-Calavi",
@@ -79,6 +93,49 @@ const Sponsors = () => {
       url: 'https://iiama.webs.upv.es/en/technology-transfer/software/tetis/'
     }
   ];
+
+  // Si l'API a retourné des sponsors, on les affiche tous dans une grille unifiée
+  if (apiSponsors) {
+    return (
+      <>
+        <Header />
+        <Navigation />
+        <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <h1 className="text-3xl md:text-4xl font-bold text-red-600 mb-10 uppercase text-center md:text-left border-b-2 border-red-200 pb-4">
+              SPONSORS & PARTNERS
+            </h1>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+              {apiSponsors.map((s) => (
+                <a
+                  key={s.id}
+                  href={s.url || '#'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white rounded-xl shadow-md p-4 flex flex-col items-center justify-center hover:shadow-lg transition-shadow duration-300"
+                >
+                  <div className="h-16 w-full flex items-center justify-center mb-2">
+                    {s.logo_fichier_id ? (
+                      <img
+                        src={`${import.meta.env.VITE_API_URL}/storage/${s.logo_fichier_id}`}
+                        alt={s.nom}
+                        className="max-h-14 max-w-full object-contain"
+                      />
+                    ) : (
+                      <span className="text-gray-400 text-xs text-center">{s.nom}</span>
+                    )}
+                  </div>
+                  <p className="text-xs text-gray-600 text-center font-medium">{s.nom}</p>
+                  <p className="text-xs text-gray-400 text-center">{s.type}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </>
+    );
+  }
 
   return (
     <>
