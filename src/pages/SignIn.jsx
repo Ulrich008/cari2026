@@ -1,43 +1,60 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 import Header from '../components/Header';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import authApi from '../api/authApi';
+import { useAuth } from '../contexts/AuthContext';
+
+const schema = z.object({
+  email: z.string().email('Email invalide'),
+  password: z.string().min(1, 'Le mot de passe est requis'),
+});
 
 const SignIn = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    rememberMe: false
-  });
-
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const [globalError, setGlobalError] = useState('');
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
-  };
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm({ resolver: zodResolver(schema) });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Sign in submitted:', formData);
-    // Rediriger vers le portail après connexion
-    window.location.href = '/registration/portal';
+  const onSubmit = async (data) => {
+    setGlobalError('');
+    try {
+      const response = await authApi.login(data);
+      const { access_token, user } = response.data;
+      login(access_token, user);
+      navigate('/registration/portal');
+    } catch (err) {
+      if (err?.errors) {
+        Object.entries(err.errors).forEach(([field, messages]) => {
+          setError(field, { message: messages[0] });
+        });
+      } else if (err?.message) {
+        setGlobalError(err.message);
+      } else {
+        setGlobalError('Email ou mot de passe incorrect.');
+      }
+    }
   };
 
   return (
     <>
       <Header />
       <Navigation />
-      
+
       <div className="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md mx-auto">
-          {/* Formulaire de connexion */}
           <div className="bg-white rounded-lg shadow-lg p-8">
-            {/* Titre en vert */}
             <h2 className="text-2xl font-bold text-green-600 mb-2 text-center">
               Sign in to your account
             </h2>
@@ -45,7 +62,13 @@ const SignIn = () => {
               Access your CARI 2026 registration dashboard.
             </p>
 
-            <form onSubmit={handleSubmit}>
+            {globalError && (
+              <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded text-red-600 text-sm">
+                {globalError}
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit(onSubmit)}>
               {/* Email */}
               <div className="mb-5">
                 <label className="block text-gray-700 font-medium mb-2">
@@ -53,13 +76,13 @@ const SignIn = () => {
                 </label>
                 <input
                   type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
+                  {...register('email')}
                   placeholder="johndoe@gmail.com"
                   className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
-                  required
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
+                )}
               </div>
 
               {/* Password */}
@@ -69,13 +92,10 @@ const SignIn = () => {
                 </label>
                 <div className="relative">
                   <input
-                    type={showPassword ? "text" : "password"}
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
+                    type={showPassword ? 'text' : 'password'}
+                    {...register('password')}
                     placeholder="Password"
                     className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 pr-10"
-                    required
                   />
                   <button
                     type="button"
@@ -94,35 +114,28 @@ const SignIn = () => {
                     )}
                   </button>
                 </div>
+                {errors.password && (
+                  <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
+                )}
               </div>
 
-              {/* Se souvenir et Forgot password */}
-              <div className="flex justify-between items-center mb-6">
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    name="rememberMe"
-                    checked={formData.rememberMe}
-                    onChange={handleChange}
-                    className="rounded border-gray-300 focus:ring-green-500"
-                  />
-                  <span className="text-gray-700 text-sm">Se souvenir</span>
-                </label>
-                <a href="#" className="text-sm text-green-600 hover:text-green-700">
+              {/* Forgot password */}
+              <div className="flex justify-end mb-6">
+                <Link to="/forgot-password" className="text-sm text-green-600 hover:text-green-700">
                   Forgot password?
-                </a>
+                </Link>
               </div>
 
               {/* Sign In Button */}
               <button
                 type="submit"
-                className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+                disabled={isSubmitting}
+                className="w-full bg-green-600 hover:bg-green-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
               >
-                Sign In
+                {isSubmitting ? 'Connexion...' : 'Sign In'}
               </button>
             </form>
 
-            {/* Register link */}
             <p className="text-center text-gray-600 text-sm mt-6">
               Don't have an account?{' '}
               <Link to="/signup" className="text-green-600 hover:text-green-700 font-semibold">

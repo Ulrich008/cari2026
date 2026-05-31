@@ -3,10 +3,12 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import RegistrationPortalLayout from '../components/RegistrationPortalLayout';
 import registrationSchema from '../validation/registrationSchema';
+import participantApi from '../api/participantApi';
 
 const RegistrationMyInfo = () => {
   const [religions, setReligions] = useState([]);
   const [caringResponsibilities, setCaringResponsibilities] = useState([]);
+  const [saveStatus, setSaveStatus] = useState(null); // 'success' | 'error' | null
 
   const {
     register,
@@ -17,37 +19,75 @@ const RegistrationMyInfo = () => {
     trigger,
     getValues,
     setError,
-    clearErrors
+    clearErrors,
+    reset,
   } = useForm({
     resolver: zodResolver(registrationSchema),
     defaultValues: {
       title: 'Mr',
-      firstName: 'Marius',
-      lastName: 'AGOSSA',
-      institution: "Université D'abomey-Calavi",
-      department: 'Institut De Formation Et De Recherche En Informatique',
-      address: 'Institut De Formation Et De Recherche En Informatique',
-      city: 'Abomey-Calavi',
+      firstName: '',
+      lastName: '',
+      institution: '',
+      department: '',
+      address: '',
+      city: '',
       state: '',
-      postalCode: '01BP21',
-      country: 'Abomey-Calavi',
-      telephone: '+229 01 67 38 87 99',
+      postalCode: '',
+      country: '',
+      telephone: '',
       mobile: '',
       fax: '',
-      emailWork: 'marius.agossa@uac.bj',
-      emailPersonal: 'mariusagossa01@gmail.com',
+      emailWork: '',
+      emailPersonal: '',
       dietary: '',
-      billingInstitution: "université d'abomey-calavi",
+      billingInstitution: '',
       billingAddress: '',
       taxOffice: '',
       taxNo: '',
-      residence: 'African',
+      residence: '',
       disability: 'No',
       otherReligion: '',
       gender: '',
     },
     mode: 'onChange'
   });
+
+  // Charger le profil depuis l'API au montage
+  useEffect(() => {
+    participantApi.getProfile()
+      .then((res) => {
+        const p = res.data ?? res;
+        reset({
+          title: p.titre ?? 'Mr',
+          firstName: p.prenom ?? '',
+          lastName: p.nom ?? '',
+          institution: p.institution ?? '',
+          department: p.departement ?? '',
+          address: p.adresse ?? '',
+          city: p.ville ?? '',
+          state: p.region ?? '',
+          postalCode: p.code_postal ?? '',
+          country: p.pays ?? '',
+          telephone: p.telephone ?? '',
+          mobile: p.mobile ?? '',
+          fax: p.fax ?? '',
+          emailWork: p.email ?? '',
+          emailPersonal: p.email_personnel ?? '',
+          dietary: p.preferences_alimentaires ?? '',
+          billingInstitution: p.facturation_institution ?? '',
+          billingAddress: p.facturation_adresse ?? '',
+          taxOffice: p.bureau_fiscal ?? '',
+          taxNo: p.numero_fiscal ?? '',
+          residence: p.residence ?? '',
+          disability: p.handicap ?? 'No',
+          otherReligion: p.autre_religion ?? '',
+          gender: p.genre ?? '',
+        });
+      })
+      .catch(() => {
+        // profil vide, le formulaire reste vierge
+      });
+  }, [reset]);
 
   const otherReligionValue = watch('otherReligion');
 
@@ -91,13 +131,50 @@ const RegistrationMyInfo = () => {
   };
 
   const onSubmit = async (data) => {
-    const finalData = {
-      ...data,
+    setSaveStatus(null);
+    const payload = {
+      titre: data.title,
+      prenom: data.firstName,
+      nom: data.lastName,
+      institution: data.institution,
+      departement: data.department,
+      adresse: data.address,
+      ville: data.city,
+      region: data.state,
+      code_postal: data.postalCode,
+      pays: data.country,
+      telephone: data.telephone,
+      mobile: data.mobile,
+      fax: data.fax,
+      email: data.emailWork,
+      email_personnel: data.emailPersonal,
+      preferences_alimentaires: data.dietary,
+      facturation_institution: data.billingInstitution,
+      facturation_adresse: data.billingAddress,
+      bureau_fiscal: data.taxOffice,
+      numero_fiscal: data.taxNo,
+      residence: data.residence,
+      handicap: data.disability,
+      autre_religion: data.otherReligion,
+      genre: data.gender,
       religions,
-      caringResponsibilities
+      responsabilites_soin: caringResponsibilities,
     };
-    console.log('Form submitted successfully:', finalData);
-    alert('✅ Formulaire soumis avec succès!');
+    try {
+      await participantApi.updateProfile(payload);
+      setSaveStatus('success');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      if (err?.errors) {
+        Object.entries(err.errors).forEach(([field, messages]) => {
+          // Mapper les champs API vers les champs du formulaire si nécessaire
+          const fieldMap = { prenom: 'firstName', nom: 'lastName', email: 'emailWork', pays: 'country' };
+          const formField = fieldMap[field] ?? field;
+          setError(formField, { message: messages[0] });
+        });
+      }
+      setSaveStatus('error');
+    }
   };
 
   const inputClass =
@@ -121,6 +198,18 @@ const RegistrationMyInfo = () => {
   return (
     <RegistrationPortalLayout title="MY INFORMATION">
       <div className="bg-white shadow-md p-6 space-y-6">
+        {/* Messages de statut */}
+        {saveStatus === 'success' && (
+          <div className="p-4 bg-green-50 border-l-4 border-green-500 text-green-700 text-sm">
+            ✅ Your information has been saved successfully.
+          </div>
+        )}
+        {saveStatus === 'error' && (
+          <div className="p-4 bg-red-50 border-l-4 border-red-500 text-red-700 text-sm">
+            ❌ An error occurred while saving. Please check the fields and try again.
+          </div>
+        )}
+
         {/* Info banner - Style jaune avec bordure gauche */}
         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-500">
           <div className="flex items-start gap-3">

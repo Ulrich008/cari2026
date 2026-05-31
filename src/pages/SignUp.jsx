@@ -1,44 +1,66 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 import Header from '../components/Header';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import authApi from '../api/authApi';
+import { useAuth } from '../contexts/AuthContext';
+
+const schema = z.object({
+  prenom: z.string().min(1, 'Le prénom est requis'),
+  nom: z.string().min(1, 'Le nom est requis'),
+  email: z.string().email('Email invalide'),
+  password: z.string().min(8, 'Minimum 8 caractères'),
+  password_confirmation: z.string().min(1, 'Veuillez confirmer votre mot de passe'),
+}).refine((data) => data.password === data.password_confirmation, {
+  message: 'Les mots de passe ne correspondent pas',
+  path: ['password_confirmation'],
+});
 
 const SignUp = () => {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    password: '',
-    agreeTerms: false
-  });
-
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const [globalError, setGlobalError] = useState('');
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
-  };
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm({ resolver: zodResolver(schema) });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Sign up submitted:', formData);
-    // Rediriger vers le portail après inscription
-    window.location.href = '/registration/portal';
+  const onSubmit = async (data) => {
+    setGlobalError('');
+    try {
+      const response = await authApi.register(data);
+      const { access_token, user } = response.data;
+      login(access_token, user);
+      navigate('/registration/portal');
+    } catch (err) {
+      if (err?.errors) {
+        Object.entries(err.errors).forEach(([field, messages]) => {
+          setError(field, { message: messages[0] });
+        });
+      } else if (err?.message) {
+        setGlobalError(err.message);
+      } else {
+        setGlobalError("Une erreur est survenue. Veuillez réessayer.");
+      }
+    }
   };
 
   return (
     <>
       <Header />
       <Navigation />
-      
+
       <div className="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md mx-auto">
-          {/* Formulaire d'inscription */}
           <div className="bg-white rounded-lg shadow-lg p-8">
-            {/* Titre en vert */}
             <h2 className="text-2xl font-bold text-green-600 mb-2 text-center">
               Create your account
             </h2>
@@ -46,53 +68,72 @@ const SignUp = () => {
               Register to participate in CARI 2026 and access your personal dashboard.
             </p>
 
-            <form onSubmit={handleSubmit}>
-              {/* Full Name */}
+            {globalError && (
+              <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded text-red-600 text-sm">
+                {globalError}
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit(onSubmit)}>
+              {/* Prénom */}
               <div className="mb-5">
                 <label className="block text-gray-700 font-medium mb-2">
-                  Full Name
+                  First Name *
                 </label>
                 <input
                   type="text"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  placeholder="johnloe@gmail.com"
+                  {...register('prenom')}
+                  placeholder="John"
                   className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
-                  required
                 />
+                {errors.prenom && (
+                  <p className="text-red-500 text-xs mt-1">{errors.prenom.message}</p>
+                )}
+              </div>
+
+              {/* Nom */}
+              <div className="mb-5">
+                <label className="block text-gray-700 font-medium mb-2">
+                  Last Name *
+                </label>
+                <input
+                  type="text"
+                  {...register('nom')}
+                  placeholder="Doe"
+                  className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+                {errors.nom && (
+                  <p className="text-red-500 text-xs mt-1">{errors.nom.message}</p>
+                )}
               </div>
 
               {/* Email */}
               <div className="mb-5">
                 <label className="block text-gray-700 font-medium mb-2">
-                  Email
+                  Email *
                 </label>
                 <input
                   type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="johnloe@gmail.com"
+                  {...register('email')}
+                  placeholder="johndoe@gmail.com"
                   className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
-                  required
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
+                )}
               </div>
 
               {/* Password */}
               <div className="mb-5">
                 <label className="block text-gray-700 font-medium mb-2">
-                  Password
+                  Password *
                 </label>
                 <div className="relative">
                   <input
-                    type={showPassword ? "text" : "password"}
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    placeholder="Password"
+                    type={showPassword ? 'text' : 'password'}
+                    {...register('password')}
+                    placeholder="Minimum 8 characters"
                     className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 pr-10"
-                    required
                   />
                   <button
                     type="button"
@@ -111,35 +152,37 @@ const SignUp = () => {
                     )}
                   </button>
                 </div>
+                {errors.password && (
+                  <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
+                )}
               </div>
 
-              {/* Terms and Conditions */}
+              {/* Confirm Password */}
               <div className="mb-6">
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    name="agreeTerms"
-                    checked={formData.agreeTerms}
-                    onChange={handleChange}
-                    className="rounded border-gray-300 focus:ring-green-500"
-                    required
-                  />
-                  <span className="text-gray-700 text-sm">
-                    I agree to the Terms and Conditions
-                  </span>
+                <label className="block text-gray-700 font-medium mb-2">
+                  Confirm Password *
                 </label>
+                <input
+                  type="password"
+                  {...register('password_confirmation')}
+                  placeholder="Repeat your password"
+                  className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+                {errors.password_confirmation && (
+                  <p className="text-red-500 text-xs mt-1">{errors.password_confirmation.message}</p>
+                )}
               </div>
 
               {/* Sign Up Button */}
               <button
                 type="submit"
-                className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+                disabled={isSubmitting}
+                className="w-full bg-green-600 hover:bg-green-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
               >
-                Sign Up
+                {isSubmitting ? 'Creating account...' : 'Sign Up'}
               </button>
             </form>
 
-            {/* Sign In link - Redirige vers SignIn */}
             <p className="text-center text-gray-600 text-sm mt-6">
               Already have an account?{' '}
               <Link to="/signin" className="text-green-600 hover:text-green-700 font-semibold">
