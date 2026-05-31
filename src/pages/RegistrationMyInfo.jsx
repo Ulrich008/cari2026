@@ -57,6 +57,13 @@ const RegistrationMyInfo = () => {
     participantApi.getProfile()
       .then((res) => {
         const p = res.data ?? res;
+        // Pré-remplir les checkboxes religions et responsabilités
+        if (Array.isArray(p.religions) && p.religions.length > 0) {
+          setReligions(p.religions);
+        }
+        if (Array.isArray(p.responsabilites_soin) && p.responsabilites_soin.length > 0) {
+          setCaringResponsibilities(p.responsabilites_soin);
+        }
         reset({
           title: p.titre ?? 'Mr',
           firstName: p.prenom ?? '',
@@ -72,7 +79,7 @@ const RegistrationMyInfo = () => {
           mobile: p.mobile ?? '',
           fax: p.fax ?? '',
           emailWork: p.email ?? '',
-          emailPersonal: p.email_personnel ?? '',
+          emailPersonal: '',                          // supprimé — pas de colonne séparée
           dietary: p.preferences_alimentaires ?? '',
           billingInstitution: p.facturation_institution ?? '',
           billingAddress: p.facturation_adresse ?? '',
@@ -133,32 +140,31 @@ const RegistrationMyInfo = () => {
   const onSubmit = async (data) => {
     setSaveStatus(null);
     const payload = {
-      titre: data.title,
-      prenom: data.firstName,
-      nom: data.lastName,
-      institution: data.institution,
-      departement: data.department,
-      adresse: data.address,
-      ville: data.city,
-      region: data.state,
-      code_postal: data.postalCode,
-      pays: data.country,
-      telephone: data.telephone,
-      mobile: data.mobile,
-      fax: data.fax,
-      email: data.emailWork,
-      email_personnel: data.emailPersonal,
+      titre:                    data.title,
+      prenom:                   data.firstName,
+      nom:                      data.lastName,
+      genre:                    data.gender,
+      institution:              data.institution,
+      departement:              data.department,
+      adresse:                  data.address,
+      ville:                    data.city,
+      region:                   data.state,
+      code_postal:              data.postalCode,
+      pays:                     data.country,
+      telephone:                data.telephone,
+      mobile:                   data.mobile,
+      fax:                      data.fax,
       preferences_alimentaires: data.dietary,
-      facturation_institution: data.billingInstitution,
-      facturation_adresse: data.billingAddress,
-      bureau_fiscal: data.taxOffice,
-      numero_fiscal: data.taxNo,
-      residence: data.residence,
-      handicap: data.disability,
-      autre_religion: data.otherReligion,
-      genre: data.gender,
+      facturation_institution:  data.billingInstitution,
+      facturation_adresse:      data.billingAddress,
+      bureau_fiscal:            data.taxOffice,
+      numero_fiscal:            data.taxNo,
+      residence:                data.residence,
+      handicap:                 data.disability,
+      autre_religion:           data.otherReligion,
       religions,
-      responsabilites_soin: caringResponsibilities,
+      responsabilites_soin:     caringResponsibilities,
+      // email non envoyé : champ lecture seule (identifiant de connexion)
     };
     try {
       await participantApi.updateProfile(payload);
