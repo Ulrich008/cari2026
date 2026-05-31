@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import RegistrationPortalLayout from '../components/RegistrationPortalLayout';
 import { useAuth } from '../contexts/AuthContext';
 import authApi from '../api/authApi';
+import participantApi from '../api/participantApi';
 
 const CheckIcon = () => (
   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -33,15 +34,29 @@ const RegistrationPortal = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [profileData, setProfileData] = useState(user || null);
-  const [loading, setLoading] = useState(!user);
+  const [registration, setRegistration] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!user) {
-      authApi.me()
-        .then((res) => setProfileData(res.data?.user ?? res.data ?? res))
-        .catch(() => {})
-        .finally(() => setLoading(false));
-    }
+    const loadData = async () => {
+      try {
+        // Charger le profil si pas déjà en contexte
+        if (!user) {
+          const meRes = await authApi.me();
+          setProfileData(meRes.data?.user ?? meRes.data ?? meRes);
+        }
+        // Charger la registration pour les statuts réels
+        const regRes = await participantApi.getMyRegistration();
+        if (regRes?.has_registration) {
+          setRegistration(regRes.data);
+        }
+      } catch (_) {
+        // Silencieux — statuts resteront par défaut
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadData();
   }, [user]);
 
   const handleLogout = async () => {
@@ -97,16 +112,24 @@ const RegistrationPortal = () => {
 
               <div className="flex items-center gap-2">
                 <span className="font-semibold text-gray-700">Payment Status :</span>
-                <span className="text-yellow-600 flex items-center gap-1">
-                  <SpinnerIcon /> Pending
-                </span>
+                {registration?.statut_paiement === 'paid' ? (
+                  <span className="text-green-600 flex items-center gap-1"><CheckIcon /> Paid</span>
+                ) : registration?.statut_paiement === 'cancelled' ? (
+                  <span className="text-red-500 flex items-center gap-1"><XIcon /> Cancelled</span>
+                ) : (
+                  <span className="text-yellow-600 flex items-center gap-1"><SpinnerIcon /> Pending</span>
+                )}
               </div>
 
               <div className="flex items-center gap-2">
                 <span className="font-semibold text-gray-700">Registration Status :</span>
-                <span className="text-yellow-600 flex items-center gap-1">
-                  <SpinnerIcon /> In Progress
-                </span>
+                {registration?.statut_registration === 'checked_in' ? (
+                  <span className="text-green-600 flex items-center gap-1"><CheckIcon /> Checked-in</span>
+                ) : registration ? (
+                  <span className="text-yellow-600 flex items-center gap-1"><SpinnerIcon /> In Progress</span>
+                ) : (
+                  <span className="text-gray-400 flex items-center gap-1"><XIcon /> Not started</span>
+                )}
               </div>
             </div>
 

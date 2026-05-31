@@ -1,13 +1,14 @@
 const apiClient = async (endpoint, options = {}) => {
   const token = localStorage.getItem('cari_token');
+  const { responseType, ...fetchOptions } = options;
 
   const config = {
     headers: {
       'Content-Type': 'application/json',
       ...(token && { Authorization: `Bearer ${token}` }),
-      ...options.headers,
+      ...fetchOptions.headers,
     },
-    ...options,
+    ...fetchOptions,
   };
 
   const response = await fetch(`${import.meta.env.VITE_API_URL}${endpoint}`, config);
@@ -22,6 +23,15 @@ const apiClient = async (endpoint, options = {}) => {
   // 204 No Content
   if (response.status === 204) {
     return null;
+  }
+
+  // Téléchargement texte/blob (lettre invitation, certificat, badge)
+  if (responseType === 'text') {
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({ message: 'Erreur serveur' }));
+      throw err;
+    }
+    return response.text();
   }
 
   const data = await response.json();
