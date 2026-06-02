@@ -53,7 +53,7 @@ const Registration = () => {
       category: 'Gala Dinner fees for Researchers',
       early: '20 €',
       late: '20 €',
-      onsite: '10 €'
+      onsite: '20 €'
     },
   ];
 
