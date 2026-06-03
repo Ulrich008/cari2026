@@ -25,7 +25,7 @@ const Venue = () => {
     { name: 'Hôtel Les Arcades', stars: 3, area: 'Abomey-Calavi' },
     { name: 'Assouka Eco-Village', stars: 2, area: 'Lake Nokoué' },
     { name: 'IITA Guest House', stars: 2, area: 'IITA Campus' },
-    { name: 'Residence Nenuphar', stars: 2, area: 'Abomey-Calavi' },
+    { name: 'IITA Guest House', stars: 2, area: 'Abomey-Calavi' },
   ];
 
   const hotelsCotonou = [
