@@ -5,8 +5,9 @@ import RegistrationPortalLayout from '../components/RegistrationPortalLayout';
 import registrationSchema from '../validation/registrationSchema';
 
 const RegistrationMyInfo = () => {
-  const [religions, setReligions] = useState([]);
+  const [religion, setReligion] = useState('');
   const [caringResponsibilities, setCaringResponsibilities] = useState([]);
+  const [isAuthor, setIsAuthor] = useState(null); // null | 'yes' | 'no'
 
   const {
     register,
@@ -45,14 +46,16 @@ const RegistrationMyInfo = () => {
       disability: 'No',
       otherReligion: '',
       gender: '',
+      documentId: '',
     },
     mode: 'onChange'
   });
 
   const otherReligionValue = watch('otherReligion');
 
+  // Validate otherReligion only when "Other" is selected
   useEffect(() => {
-    if (religions.includes('Other')) {
+    if (religion === 'Other') {
       if (!otherReligionValue || otherReligionValue.trim() === '') {
         setError('otherReligion', {
           type: 'manual',
@@ -64,7 +67,16 @@ const RegistrationMyInfo = () => {
     } else {
       clearErrors('otherReligion');
     }
-  }, [religions, otherReligionValue, setError, clearErrors]);
+  }, [religion, otherReligionValue, setError, clearErrors]);
+
+  // Validate documentId when isAuthor is 'yes'
+  useEffect(() => {
+    if (isAuthor === 'yes') {
+      trigger('documentId');
+    } else {
+      clearErrors('documentId');
+    }
+  }, [isAuthor, trigger, clearErrors]);
 
   const handleSameAsAbove = (checked) => {
     if (checked) {
@@ -76,11 +88,9 @@ const RegistrationMyInfo = () => {
     }
   };
 
-  const handleReligionChange = (religion, checked) => {
-    const updated = checked
-      ? [...religions, religion]
-      : religions.filter(r => r !== religion);
-    setReligions(updated);
+  // Single-select religion (radio behavior)
+  const handleReligionChange = (selected) => {
+    setReligion(selected);
   };
 
   const handleResponsibilityChange = (responsibility, checked) => {
@@ -91,10 +101,20 @@ const RegistrationMyInfo = () => {
   };
 
   const onSubmit = async (data) => {
+    // Validate document ID manually if author
+    if (isAuthor === 'yes' && !data.documentId?.trim()) {
+      setError('documentId', {
+        type: 'manual',
+        message: 'Veuillez saisir votre ID de document'
+      });
+      return;
+    }
+
     const finalData = {
       ...data,
-      religions,
-      caringResponsibilities
+      religion,
+      caringResponsibilities,
+      isAuthor,
     };
     console.log('Form submitted successfully:', finalData);
     alert('✅ Formulaire soumis avec succès!');
@@ -102,10 +122,10 @@ const RegistrationMyInfo = () => {
 
   const inputClass =
     'w-full border border-gray-300 rounded px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent transition bg-white';
-    
+
   const getInputClass = (fieldName) => {
     return errors[fieldName] && touchedFields[fieldName]
-      ? `${inputClass} border-red-500 focus:ring-red-500` 
+      ? `${inputClass} border-red-500 focus:ring-red-500`
       : inputClass;
   };
 
@@ -114,27 +134,27 @@ const RegistrationMyInfo = () => {
 
   const getSelectClass = (fieldName) => {
     return errors[fieldName] && touchedFields[fieldName]
-      ? `${selectClass} border-red-500 focus:ring-red-500` 
+      ? `${selectClass} border-red-500 focus:ring-red-500`
       : selectClass;
   };
 
   return (
     <RegistrationPortalLayout title="MY INFORMATION">
       <div className="bg-white shadow-md p-6 space-y-6">
-        {/* Info banner - Style jaune avec bordure gauche */}
+        {/* Info banner */}
         <div className="p-4 bg-yellow-50 border-l-4 border-yellow-500">
           <div className="flex items-start gap-3">
             <svg className="w-5 h-5 text-yellow-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <p className="text-sm text-gray-700">
-              <strong>Important:</strong> Please ensure all your personal information is correct before proceeding. 
+              <strong>Important:</strong> Please ensure all your personal information is correct before proceeding.
               The name you provide will be used for your badge and official conference documents.
             </p>
           </div>
         </div>
 
-        <form 
+        <form
           onSubmit={handleSubmit(onSubmit)}
           onKeyDown={(e) => {
             if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
@@ -152,8 +172,8 @@ const RegistrationMyInfo = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <select 
-                  name="title" 
+                <select
+                  name="title"
                   {...register('title')}
                   className={getSelectClass('title')}
                 >
@@ -169,7 +189,7 @@ const RegistrationMyInfo = () => {
               </div>
 
               <div>
-                <select 
+                <select
                   {...register('gender')}
                   className={selectClass}
                 >
@@ -362,6 +382,69 @@ const RegistrationMyInfo = () => {
             </div>
           </div>
 
+          {/* AUTHOR SECTION — nouvelle section */}
+          <div>
+            <div className="bg-green-700 text-white px-4 py-2 font-semibold text-sm mb-4">
+              author information
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <p className="text-sm text-gray-700 mb-2">
+                  Are you presenting a paper at this conference? <span className="text-red-500">*</span>
+                </p>
+                <div className="flex gap-6">
+                  <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="isAuthor"
+                      value="yes"
+                      className="accent-green-700"
+                      checked={isAuthor === 'yes'}
+                      onChange={() => setIsAuthor('yes')}
+                    />
+                    Yes, I am an author
+                  </label>
+                  <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="isAuthor"
+                      value="no"
+                      className="accent-green-700"
+                      checked={isAuthor === 'no'}
+                      onChange={() => {
+                        setIsAuthor('no');
+                        setValue('documentId', '');
+                        clearErrors('documentId');
+                      }}
+                    />
+                    No
+                  </label>
+                </div>
+              </div>
+
+              {/* Document ID — visible uniquement si auteur */}
+              {isAuthor === 'yes' && (
+                <div className="pl-0 md:pl-4 border-l-2 border-green-200">
+                  <label className="block text-sm text-gray-700 mb-1">
+                    Document / Paper ID <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    {...register('documentId')}
+                    placeholder="e.g. CONF-2026-00123"
+                    className={getInputClass('documentId')}
+                  />
+                  {errors.documentId && (
+                    <p className="text-red-500 text-xs mt-1">{errors.documentId.message}</p>
+                  )}
+                  <p className="text-xs text-gray-500 mt-1">
+                    Please enter the ID assigned to your paper during the submission process.
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+
           {/* INVOICE */}
           <div>
             <div className="bg-green-700 text-white px-4 py-2 font-semibold text-sm mb-4">
@@ -370,8 +453,8 @@ const RegistrationMyInfo = () => {
 
             <div className="space-y-4">
               <label className="flex items-center gap-2 text-sm text-gray-700">
-                <input 
-                  type="checkbox" 
+                <input
+                  type="checkbox"
                   className="accent-green-700"
                   onChange={(e) => handleSameAsAbove(e.target.checked)}
                 />
@@ -449,31 +532,41 @@ const RegistrationMyInfo = () => {
                 <p className="text-red-500 text-xs mt-1">{errors.disability.message}</p>
               )}
 
+              {/* Religion — sélection unique (radio buttons) */}
               <div>
-                <p className="mb-2 text-sm text-gray-700">What religious holidays do you observe?</p>
+                <p className="mb-2 text-sm text-gray-700">
+                  What religious holidays do you observe?{' '}
+                  <span className="text-xs text-gray-400">(Select one)</span>
+                </p>
                 <div className="grid grid-cols-2 gap-2 text-sm text-gray-700">
                   {['No religion', 'Buddhist', 'Christian', 'Hindu', 'Jewish', 'Muslim', 'Sikh', 'Prefer not to say', 'Other'].map(r => (
-                    <label key={r} className="flex items-center gap-2">
-                      <input 
-                        type="checkbox" 
+                    <label key={r} className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="religion"
                         className="accent-green-700"
-                        checked={religions.includes(r)}
-                        onChange={(e) => handleReligionChange(r, e.target.checked)}
-                      /> 
+                        checked={religion === r}
+                        onChange={() => handleReligionChange(r)}
+                      />
                       {r}
                     </label>
                   ))}
                 </div>
               </div>
 
-              <textarea
-                {...register('otherReligion')}
-                className={`${getInputClass('otherReligion')} resize-none`}
-                rows={3}
-                placeholder="If other religion or belief, please write in"
-              />
-              {errors.otherReligion && touchedFields.otherReligion && (
-                <p className="text-red-500 text-xs mt-1">{errors.otherReligion.message}</p>
+              {/* Other religion text — visible uniquement si "Other" sélectionné */}
+              {religion === 'Other' && (
+                <div>
+                  <textarea
+                    {...register('otherReligion')}
+                    className={`${getInputClass('otherReligion')} resize-none`}
+                    rows={3}
+                    placeholder="If other religion or belief, please write in"
+                  />
+                  {errors.otherReligion && (
+                    <p className="text-red-500 text-xs mt-1">{errors.otherReligion.message}</p>
+                  )}
+                </div>
               )}
 
               <div>
@@ -488,13 +581,13 @@ const RegistrationMyInfo = () => {
                     'Secondary carer',
                     'Prefer not to say'
                   ].map(item => (
-                    <label key={item} className="flex items-center gap-2">
-                      <input 
-                        type="checkbox" 
+                    <label key={item} className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
                         className="accent-green-700"
                         checked={caringResponsibilities.includes(item)}
                         onChange={(e) => handleResponsibilityChange(item, e.target.checked)}
-                      /> 
+                      />
                       {item}
                     </label>
                   ))}

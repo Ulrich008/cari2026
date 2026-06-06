@@ -23,6 +23,8 @@ import RegistrationPayment from './pages/RegistrationPayment';
 import RegistrationInvitation from './pages/RegistrationInvitation';
 import RegistrationCertificate from './pages/RegistrationCertificate';
 import CybSecAfrica from './pages/CybSecAfrica';
+import Program from './pages/Program';
+import InternationalCooperation from './pages/InternationalCooperation';
 
 const Layout = () => (
   <>
@@ -56,12 +58,12 @@ function App() {
           <Route path="/organization/cari-steering" element={<UnderConstruction />} />
 
           {/* Routes pour PROGRAM */}
-          <Route path="/program" element={<UnderConstruction />} />
-          <Route path="/program/main-conference" element={<UnderConstruction />} />
+          <Route path="/program" element={<Program/>} />
+          <Route path="/program/main-conference" element={<Program />} />
           <Route path="/program/data-science-ai-agriculture" element={<UnderConstruction />} />
           <Route path="/program/nlp-african-languages" element={<UnderConstruction />} />
           <Route path="/program/cybersecurity-africa" element={<UnderConstruction />} />
-          <Route path="/program/international-cooperation" element={<UnderConstruction />} />
+          <Route path="/program/international-cooperation" element={<InternationalCooperation />} />
           <Route path="/program/satellite-events" element={<UnderConstruction />} />
 
           {/* Autres pages */}
