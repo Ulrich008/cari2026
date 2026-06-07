@@ -51,9 +51,9 @@ const Registration = () => {
     },
     {
       category: 'Gala Dinner fees for Researchers',
-      early: '10 €',
-      late: '10 €',
-      onsite: '10 €'
+      early: '20 €',
+      late: '20 €',
+      onsite: '20 €'
     },
   ];
 

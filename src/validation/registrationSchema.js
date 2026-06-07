@@ -99,6 +99,8 @@ export const registrationSchema = z.object({
   }),
 
   otherReligion: z.string().max(200, 'Max 200 caractères').optional(),
+
+  documentId: z.string().max(50, 'Max 50 caractères').optional().or(z.literal('')),
 });
 
 // Type TypeScript inféré (optionnel, si vous utilisez TypeScript)

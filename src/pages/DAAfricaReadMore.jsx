@@ -60,8 +60,8 @@ const daafricaData = {
             label: "https://www.springer.com/gp/computer-science/lcs/conference-proceedings-guideline"
           },
           {
-            url: "https://easychair.org/my/conference?conf=nlparlworkshop2026",
-            label: "https://easychair.org/my/conference?conf=nlparlworkshop2026"
+            url: " https://easychair.org/conferences/?conf=daafrica2026",
+            label: "https://easychair.org/conferences/?conf=daafrica2026"
           }
         ]
       },
