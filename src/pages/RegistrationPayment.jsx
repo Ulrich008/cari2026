@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import RegistrationPortalLayout from '../components/RegistrationPortalLayout';
 
 const RegistrationPayment = () => {
@@ -65,7 +65,7 @@ const RegistrationPayment = () => {
     },
   ];
 
-  // Tarifs Gala Dinner selon le fichier image
+  // Tarifs Gala Dinner
   const galaDinnerFees = {
     africanStudent: { early: 10, late: 10, onsite: 10, label: "Gala Dinner for African Students" },
     researcher: { early: 20, late: 20, onsite: 10, label: "Gala Dinner for Researchers" }
@@ -114,6 +114,7 @@ const RegistrationPayment = () => {
     );
   };
 
+  // Calcul du total - sera déclenché automatiquement par useEffect
   const calculateTotal = () => {
     let totalValue = 0;
     
@@ -135,27 +136,27 @@ const RegistrationPayment = () => {
     setTotal(totalValue.toFixed(2));
   };
 
+  // useEffect pour mettre à jour automatiquement le total quand les dépendances changent
+  useEffect(() => {
+    calculateTotal();
+  }, [
+    selectedCategory, 
+    registrationPeriod, 
+    galaForStudent, 
+    galaStudentPeriod,
+    galaStudentQuantity,
+    galaForResearcher,
+    galaResearcherPeriod,
+    galaResearcherQuantity
+  ]);
+
   const handleCategorySelect = (category, period) => {
     setSelectedCategory(category);
     setRegistrationPeriod(period);
-    setTimeout(() => calculateTotal(), 0);
   };
 
   const handlePeriodChange = (period) => {
     setRegistrationPeriod(period);
-    setTimeout(() => calculateTotal(), 0);
-  };
-
-  const handleGalaStudentChange = (checked) => {
-    setGalaForStudent(checked);
-    if (!checked) setGalaStudentQuantity(0);
-    setTimeout(() => calculateTotal(), 0);
-  };
-
-  const handleGalaResearcherChange = (checked) => {
-    setGalaForResearcher(checked);
-    if (!checked) setGalaResearcherQuantity(0);
-    setTimeout(() => calculateTotal(), 0);
   };
 
   const inputClass =
@@ -173,7 +174,7 @@ const RegistrationPayment = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <p className="text-sm text-gray-700">
-                <strong>Important:</strong> All payments are processed in US dollars. 
+                <strong>Important:</strong> All payments are processed in Euros (€). 
                 Please ensure your billing information is correct before proceeding.
               </p>
             </div>
@@ -232,9 +233,9 @@ const RegistrationPayment = () => {
             </div>
           </div>
 
-          {/* PREMIERE SECTION - All fees will be collected in US dollars */}
+          {/* PREMIERE SECTION - All fees will be collected in Euros */}
           <div className="bg-green-700 text-white px-4 py-2 font-semibold text-sm">
-            All fees will be collected in US dollars
+            All fees will be collected in Euros (€)
           </div>
 
           <div className="p-6 text-sm">
@@ -441,7 +442,6 @@ const RegistrationPayment = () => {
                           onChange={() => {
                             setGalaForStudent(true);
                             setGalaStudentPeriod('early');
-                            setTimeout(() => calculateTotal(), 0);
                           }}
                           className="accent-green-600 w-4 h-4"
                         />
@@ -459,7 +459,6 @@ const RegistrationPayment = () => {
                           onChange={() => {
                             setGalaForStudent(true);
                             setGalaStudentPeriod('late');
-                            setTimeout(() => calculateTotal(), 0);
                           }}
                           className="accent-green-600 w-4 h-4"
                         />
@@ -477,7 +476,6 @@ const RegistrationPayment = () => {
                           onChange={() => {
                             setGalaForStudent(true);
                             setGalaStudentPeriod('onsite');
-                            setTimeout(() => calculateTotal(), 0);
                           }}
                           className="accent-green-600 w-4 h-4"
                         />
@@ -494,10 +492,7 @@ const RegistrationPayment = () => {
                           min="0"
                           max="10"
                           value={galaStudentQuantity}
-                          onChange={(e) => {
-                            setGalaStudentQuantity(parseInt(e.target.value) || 0);
-                            setTimeout(() => calculateTotal(), 0);
-                          }}
+                          onChange={(e) => setGalaStudentQuantity(parseInt(e.target.value) || 0)}
                           className="border border-gray-300 w-16 px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-green-600 text-center"
                         />
                       </div>
@@ -545,7 +540,6 @@ const RegistrationPayment = () => {
                           onChange={() => {
                             setGalaForResearcher(true);
                             setGalaResearcherPeriod('early');
-                            setTimeout(() => calculateTotal(), 0);
                           }}
                           className="accent-green-600 w-4 h-4"
                         />
@@ -563,7 +557,6 @@ const RegistrationPayment = () => {
                           onChange={() => {
                             setGalaForResearcher(true);
                             setGalaResearcherPeriod('late');
-                            setTimeout(() => calculateTotal(), 0);
                           }}
                           className="accent-green-600 w-4 h-4"
                         />
@@ -581,7 +574,6 @@ const RegistrationPayment = () => {
                           onChange={() => {
                             setGalaForResearcher(true);
                             setGalaResearcherPeriod('onsite');
-                            setTimeout(() => calculateTotal(), 0);
                           }}
                           className="accent-green-600 w-4 h-4"
                         />
@@ -598,10 +590,7 @@ const RegistrationPayment = () => {
                           min="0"
                           max="10"
                           value={galaResearcherQuantity}
-                          onChange={(e) => {
-                            setGalaResearcherQuantity(parseInt(e.target.value) || 0);
-                            setTimeout(() => calculateTotal(), 0);
-                          }}
+                          onChange={(e) => setGalaResearcherQuantity(parseInt(e.target.value) || 0)}
                           className="border border-gray-300 w-16 px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-green-600 text-center"
                         />
                       </div>
